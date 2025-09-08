@@ -63,8 +63,12 @@ public class lucyLogicGate {
     public static int launchPurple (Servo outputServo, Servo purpleGate, int purpleCount) {
 
         if (purpleCount > 0) {
+            // Load the artifact
             outputServo.setPosition(lucyConstDefinitions.OUTPUT_CONTROL_PURPLE);
             purpleGate.setPosition(lucyConstDefinitions.PURPLE_GATE_OPEN);
+
+            // TODO: call function to actually launch the artifact
+
             purpleCount--;
         }
 
@@ -74,8 +78,12 @@ public class lucyLogicGate {
     public static int launchGreen (Servo outputServo, Servo greenGate, int greenCount) {
 
         if (greenCount > 0) {
+            // Load the artifact
             outputServo.setPosition(lucyConstDefinitions.OUTPUT_CONTROL_GREEN);
             greenGate.setPosition(lucyConstDefinitions.GREEN_GATE_OPEN);
+
+            // TODO: call function to actually launch the artifact
+
             greenCount--;
         }
 
@@ -105,6 +113,7 @@ public class lucyLogicGate {
         int purpleCount = artifactCount[0];
         int greenCount  = artifactCount[1];
 
+        // Launch artifacts in order based on obelisk code
         switch (obeliskCode) {
             case "PPG":
                 purpleCount = launchPurple(outputServo, purpleGate, purpleCount);
