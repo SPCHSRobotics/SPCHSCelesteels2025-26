@@ -10,15 +10,21 @@ public class alinaDrive {
 
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
+    public DcMotor backLeftDrive;
+    public DcMotor backRightDrive;
 
     public alinaDrive(HardwareMap hardwareMap) {
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
         frontLeftDrive = hardwareMap.get(DcMotor.class, "front_left_drive");
         frontRightDrive = hardwareMap.get(DcMotor.class, "front_right_drive");
+        backRightDrive = hardwareMap.get(DcMotor.class, "back_right_drive");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "back_left_drive");
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        backRightDrive.setDirection(DcMotor.Direction.FORWARD);
     }
 
     public void alinaDriveFunction(Gamepad gamepad1, Telemetry telemetry){
@@ -33,6 +39,8 @@ public class alinaDrive {
         // Set up a variable for each drive wheel to save the power level for telemetry.
         double frontLeftPower  = axial + lateral + yaw;
         double frontRightPower = axial - lateral - yaw;
+        double backLeftPower   = axial - lateral + yaw;
+        double backRightPower  = axial + lateral - yaw;
 
         // Normalize the values so no wheel power exceeds 100%
         // This ensures that the robot maintains the desired motion.
@@ -41,13 +49,19 @@ public class alinaDrive {
         if (max > 1.0) {
             frontLeftPower  /= max;
             frontRightPower /= max;
+            backLeftPower   /= max;
+            backRightPower  /= max;
         }
         // Send calculated power to wheels
         frontLeftDrive.setPower(frontLeftPower);
         frontRightDrive.setPower(frontRightPower);
+        backLeftDrive.setPower(backLeftPower);
+        backRightDrive.setPower(backRightPower);
+
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Front left/Right", "%4.2f, %4.2f", frontLeftPower, frontRightPower);
+        telemetry.addData("Back  left/Right", "%4.2f, %4.2f", backLeftPower, backRightPower);
         telemetry.update();
     }
 }
