@@ -16,10 +16,10 @@ public class alinaDrive {
     public alinaDrive(HardwareMap hardwareMap) {
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
-        frontLeftDrive = hardwareMap.get(DcMotor.class, "front_left_drive");
-        frontRightDrive = hardwareMap.get(DcMotor.class, "front_right_drive");
-        backRightDrive = hardwareMap.get(DcMotor.class, "back_right_drive");
-        backLeftDrive = hardwareMap.get(DcMotor.class, "back_left_drive");
+        frontLeftDrive = hardwareMap.get(DcMotor.class, "leftFrontDrive");
+        frontRightDrive = hardwareMap.get(DcMotor.class, "rightFrontDrive");
+        backRightDrive = hardwareMap.get(DcMotor.class, "rightBackDrive");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "leftBackDrive");
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
