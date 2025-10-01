@@ -20,7 +20,8 @@ public class alinaIntake {
         double intakePower = 0;
 
         if (gamepad2.aWasPressed()){
-            intakePower=100;
+            intakePower=200;
+
             intakeMotor.setPower(intakePower);
         } else if (gamepad2.bWasPressed()) {
             intakePower=0;
