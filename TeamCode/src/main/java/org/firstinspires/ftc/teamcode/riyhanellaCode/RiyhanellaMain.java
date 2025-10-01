@@ -5,9 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-public class RiyhanellaMain
-{@TeleOp(name="Shark OpMode", group="Shark OpMode")
-public class BasicOmniOpMode_Linear extends LinearOpMode {
+@TeleOp(name="Shark OpMode", group="Shark OpMode")
+
+public class RiyhanellaMain extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
@@ -107,5 +107,3 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
             telemetry.update();
         }
     }}
-
-}
