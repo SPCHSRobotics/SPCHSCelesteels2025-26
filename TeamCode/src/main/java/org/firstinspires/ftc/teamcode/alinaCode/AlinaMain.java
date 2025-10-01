@@ -13,7 +13,7 @@ public class AlinaMain extends LinearOpMode {
     public void runOpMode() {
         //initialize hardware
         alinaDrive alinaDrive = new alinaDrive(hardwareMap);
-
+        alinaIntake alinaIntake = new alinaIntake(hardwareMap);
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -25,8 +25,9 @@ public class AlinaMain extends LinearOpMode {
         while (opModeIsActive()) {
             //call all the functions
             alinaDrive.alinaDriveFunction(gamepad1, telemetry);
+            alinaIntake.alinaIntakeFunction(gamepad2,telemetry);
 
-            // Show the elapsed game time, wheel power... (more stuff later :3)
+            // Show the elapsed game time, wheel power, intake power... (more stuff later :3)
             telemetry.addData("Status", "Run Time: " + runtime);
             telemetry.update();
         }
