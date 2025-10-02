@@ -21,11 +21,12 @@ public class alinaIntake {
 
         if (gamepad2.aWasPressed()){
             intakePower=200;
-
             intakeMotor.setPower(intakePower);
+
         } else if (gamepad2.bWasPressed()) {
             intakePower=0;
             intakeMotor.setPower(intakePower);
+
         }
 
         //show what the intake power is on driver hub
