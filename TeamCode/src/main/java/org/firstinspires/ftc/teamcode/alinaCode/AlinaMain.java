@@ -14,7 +14,7 @@ public class AlinaMain extends LinearOpMode {
         //initialize hardware
         alinaDrive alinaDrive = new alinaDrive(hardwareMap);
         alinaIntake alinaIntake = new alinaIntake(hardwareMap);
-        /*alinaSpin alinaSpin = new alinaSpin(hardwareMap);*/
+        //alinaSpin alinaSpin = new alinaSpin(hardwareMap);
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
         telemetry.update();
