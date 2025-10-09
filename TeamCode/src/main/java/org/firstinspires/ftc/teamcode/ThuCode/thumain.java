@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.ThuCode;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+@Disabled
 @TeleOp(name="unicorn heaven opmode", group="Linear Op Mode")
 public class thumain extends LinearOpMode{
 
