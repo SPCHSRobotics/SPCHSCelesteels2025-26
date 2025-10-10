@@ -1,5 +1,4 @@
-package org.firstinspires.ftc.teamcode.ParisCode;
-
+package org.firstinspires.ftc.teamcode.userSandboxes.riyhanellaCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -8,28 +7,37 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Disabled
-@TeleOp(name="ParisCutesySandbox", group="Linear OpMode")
-public class ParisMain extends LinearOpMode {
+@TeleOp(name="Shark OpMode", group="Shark OpMode")
 
+public class RiyhanellaMain extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
-    private final ElapsedTime runtime = new ElapsedTime();
-    public DcMotor frontLeftDrive = null;
-    public DcMotor backLeftDrive = null;
-    public DcMotor frontRightDrive = null;
-    public DcMotor backRightDrive = null;
+    private ElapsedTime runtime = new ElapsedTime();
+    private DcMotor frontLeftDrive = null;
+    private DcMotor backLeftDrive = null;
+    private DcMotor frontRightDrive = null;
+    private DcMotor backRightDrive = null;
 
     @Override
     public void runOpMode() {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
-        frontLeftDrive = hardwareMap.get(DcMotor.class, "leftFrontDrive");
-        backLeftDrive = hardwareMap.get(DcMotor.class, "leftBackDrive");
-        frontRightDrive = hardwareMap.get(DcMotor.class, "rightFrontDrive");
-        backRightDrive = hardwareMap.get(DcMotor.class, "rightBackDrive");
+        frontLeftDrive = hardwareMap.get(DcMotor.class, "front_left_drive");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "back_left_drive");
+        frontRightDrive = hardwareMap.get(DcMotor.class, "front_right_drive");
+        backRightDrive = hardwareMap.get(DcMotor.class, "back_right_drive");
 
-
+        // ########################################################################################
+        // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
+        // ########################################################################################
+        // Most robots need the motors on one side to be reversed to drive forward.
+        // The motor reversals shown here are for a "direct drive" robot (the wheels turn the same direction as the motor shaft)
+        // If your robot has additional gear reductions or uses a right-angled drive, it's important to ensure
+        // that your motors are turning in the correct direction.  So, start out with the reversals here, BUT
+        // when you first test your robot, push the left joystick forward and observe the direction the wheels turn.
+        // Reverse the direction (flip FORWARD <-> REVERSE ) of any wheel that runs backward
+        // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -71,6 +79,23 @@ public class ParisMain extends LinearOpMode {
                 backRightPower  /= max;
             }
 
+            // This is test code:
+            //
+            // Uncomment the following code to test your motor directions.
+            // Each button should make the corresponding motor run FORWARD.
+            //   1) First get all the motors to take to correct positions on the robot
+            //      by adjusting your Robot Configuration if necessary.
+            //   2) Then make sure they run in the correct direction by modifying the
+            //      the setDirection() calls above.
+            // Once the correct motors move in the correct direction re-comment this code.
+
+            /*
+            frontLeftPower  = gamepad1.x ? 1.0 : 0.0;  // X gamepad
+            backLeftPower   = gamepad1.a ? 1.0 : 0.0;  // A gamepad
+            frontRightPower = gamepad1.y ? 1.0 : 0.0;  // Y gamepad
+            backRightPower  = gamepad1.b ? 1.0 : 0.0;  // B gamepad
+            */
+
             // Send calculated power to wheels
             frontLeftDrive.setPower(frontLeftPower);
             frontRightDrive.setPower(frontRightPower);
@@ -83,6 +108,4 @@ public class ParisMain extends LinearOpMode {
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", backLeftPower, backRightPower);
             telemetry.update();
         }
-    }
-}
-
+    }}
