@@ -30,7 +30,7 @@ public class alinaIntake {
         }
 
         //show what the intake power is on driver hub
-        telemetry.addData("intake power:", "%4.2f",intakePower);
+        telemetry.addData("intake power:",intakePower);
         telemetry.update();
 
     }
