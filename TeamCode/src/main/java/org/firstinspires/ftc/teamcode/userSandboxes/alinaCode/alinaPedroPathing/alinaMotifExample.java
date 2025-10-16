@@ -105,7 +105,7 @@ public class alinaMotifExample extends LinearOpMode {
 
     // a place to put your intake and shooting functions
     public void intakeArtifacts() {
-        DcMotor intakeMotor;
+        /* DcMotor intakeMotor;
         //call intake motor
         intakeMotor = hardwareMap.get(DcMotor.class,"intakeMotor");
         //set intake motor reverse
@@ -127,6 +127,7 @@ public class alinaMotifExample extends LinearOpMode {
         //show what the intake power is on driver hub
         telemetry.addData("intake power:",intakePower);
         telemetry.update();
+         */
 
     }
 
