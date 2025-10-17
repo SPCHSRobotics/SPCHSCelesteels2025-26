@@ -21,9 +21,15 @@ allprojects {
     repositories {
         mavenCentral()
         google()
-    }
-}
 
-repositories {
-    mavenCentral()
-}
+        //Pedro Pathing Panels
+        maven {
+            url = "https://mymaven.bylazar.com/releases"
+        }
+
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
