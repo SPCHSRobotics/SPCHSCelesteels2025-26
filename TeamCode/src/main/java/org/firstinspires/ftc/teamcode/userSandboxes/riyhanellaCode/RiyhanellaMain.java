@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Disabled
-@TeleOp(name="Shark OpMode", group="Shark OpMode")
+@TeleOp(name="Shark OpMode", group="Sharkd OpMode")
 
 public class RiyhanellaMain extends LinearOpMode {
 
