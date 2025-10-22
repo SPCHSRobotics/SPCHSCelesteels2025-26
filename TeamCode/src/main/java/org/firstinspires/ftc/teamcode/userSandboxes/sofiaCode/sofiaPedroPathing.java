@@ -45,9 +45,14 @@ private final Pose intakePPGPose1 = new Pose();
          scorePreLoad = new Path (new BezierLinear (how the path will look) (startPose, scorePose));
          scorePreLoad.setLinearHeadingInterpolation(how the bot will change directions/Bezier Path Types)(startPose.getHeading(direction of startPose), scorePose.getHeading());
 
+         apriltagPath = follower.pathBuilder
+                  .addPath(new BezierLine(scorePose, apriltagPose))
+                  .setLinearHeadingInterpolation(scorePose.getHeading(), apriltagPose.getHeading())
+                  .build();
+
          grabPPG1 = follower.pathBuilder
-                 .addPath(new BezierLine(scorePose, intakePPG1))
-                 .setLinearHeadingInterpolation(scorePose.getHeading(), intakePPG1())
+                 .addPath(new BezierLine(apriltagPose, intakePPG1))
+                 .setLinearHeadingInterpolation(apriltagPose.getHeading(), intakePPG1())
                  .build();
          scorePPG1 = follower.pathBuilder
                  .addPath(new BezierLine(intakePPG1, scorePose))
@@ -71,6 +76,89 @@ private final Pose intakePPGPose1 = new Pose();
                     .build();
 
         grabPGP1 = follower.pathBuilder
-                    .addPath(new BezierLine(scorePose, intakePGP1)
-                    .setLinearInterpolation(scorePose.getHeading(), scorePose.
+                    .addPath(new BezierLine(scorePose, intakePGP1))
+                    .setLinearHeadingInterpolation(scorePose.getHeading(), intakePGP1.getHeading())
+                    .build();
+        scorePGP1 = follower.pathBuilder
+                    .addPath(new BezierLine(intakePGP1, scorePose))
+                    .setLinearHeadingInterpolation(intakePGP1.getHeading(), scorePose.getHeading())
+                    .build();
+        grabPGP2 = follower.pathBuilder
+                    .addPath(new BezierLine(scorePose, intakePGP2))
+                    .setLinearHeadingInterpolation(scorePose.getHeading(), intakePGP2.getHeading())
+                    .build();
+        scorePGP2 = follower.pathBuilder
+                    .addPath(new BezierLine(intakePGP2, scorePose))
+                    .setLinearHeadingInterpolation(intakePGP2.getHeading(), scorePose.getHeading())
+                    .build();
+        grabPGP3 = follower.pathBuilder
+                    .addPath(new BezierLine(scorePose, intakePGP3))
+                    .setLinearHeadingInterpolation(scorePose.getHeading(), intakePGP3.getHeading())
+                    .build();
+        scorePGP3 = follower.pathBuilder
+                    .addPath(new BezierLine(intakePGP3, scorePose))
+                    .setLinearHeadingInterpolation(intakePGP3.getHeading(), scorePose.getHeading())
+                    .build();
+
+        grabGPP1 = follower.pathBuilder
+                    .addPath(new BezierLine(scorePose, intakeGPP1))
+                    .setLinearHeadingInterpolation(scorePose.getHeading(), intakeGGP1.getHeading())
+                    .build();
+        scoreGPP1 = follower.pathBuilder
+                    .addPath(new BezierLine(intakeGPP1, scorePose))
+                    .setLinearHeadingInterpolation(intakeGPP1.getHeading(), scorePose.getHeading())
+                    .build();
+        grabGPP2 = follower.pathBuilder
+                    .addPath(new BezierLine(scorePose, intakeGPP2))
+                    .setLinearHeadingInterpolation(scorePose.getHeading(), intakeGPP2.getHeading())
+                    .build();
+        scoreGPP2 = follower.pathBuilder
+                    .addPath(new BezierLine(intakeGPP2, scorePose))
+                    .setLinearHeadingInterpolation(intakeGPP2.getHeading(), scorePose.getHeading())
+                    .build();
+        grabGPP3 = follower.pathBuilder
+                    .addPath(new BezierLine(scorePose, intakeGPP3))
+                    .setLinearHeadingInterpolation(scorePose.getHeading(), intakeGPP3.getHeading())
+                    .build();
+        scoreGPP3 = follower.pathBuilder
+                    .addPath(new BezierLine(intakeGPP3, scorePose))
+                    .setLinearHeadingInterpolation(intakeGPP3.getHeading(), scorePose.getHeading())
+                    .build();
+
+
+public void autonomousPathUpdate() {
+    switch (pathState) {
+        case 0: start to score path
+            follower.followPath(scorePreLoad/basically does the scorePreLoad path written above)
+            setPathState(1/goes to case 1)
+            } break;
+        case 1: april tag path
+            if (!follower.isBusy()) this checks to see if the bot is actively on a path {
+            follower.followPath(apriltagPath,true);
+                if(detectedTag == PPG) {
+                        setPathState(2);
+                    } else if(detectedTag == PGP) {
+                        setPathState(number smth);
+                    } else if(detectedTag == GPP {
+                        setPathState(number smth idk);
+                        }
+            } break;
+        case 2: hopefully this one goes to bottom row in the PPG pattern
+            if (!follower.isBusy()) {
+            follower.followPath(grabPPG1, true);
+            } else {
+                intakeOn();
+           }
+           if (!follower.isBusy() && follower.HasFinishedPath()) {
+            intakeOff();
+            setPathState(3)
+            } break;
+        case 3: shoot bottom row
+            if (!follower.isBusy()) {
+            follower.followPath(scorePPG1, true);
+            }
+            if (!follower.isBusy() && follower.HasFinishedPath()) {
+                outtakeOff
+
+
  */
