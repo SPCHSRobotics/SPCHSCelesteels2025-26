@@ -7,15 +7,14 @@ import com.pedropathing.geometry.Pose;
 import com.pedropathing.paths.PathChain;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import java.nio.file.Path;
-import java.util.Timer;
+import com.pedropathing.paths.Path;
+import com.pedropathing.util.Timer;
 
 import javax.xml.xpath.XPath;
 
 @Autonomous(name = "sofiaPPBottomBlue", group = "Linear OpMode")
 @Configurable
-public class sofiaPedroPathing extends LinearOpMode {
+public abstract class sofiaPedroPathing extends LinearOpMode {
 private Follower follower;
 private Timer patherTimer, actionTimer, opmodeTimer;
 private int pathState;
@@ -26,11 +25,33 @@ private final Pose apriltagePose = new Pose();
 private final Pose intakePPGPose1 = new Pose();
 
 private Path scorePreLoad;
-private PathChain
 
 public void buildPaths() {
 scorePreLoad = new Path(new BezierLine(startPose, scorePose));
-scorePreLoad.setHeadingInterpolation(startPose.getHeading())
+scorePreLoad.setLinearHeadingInterpolation(startPose.getHeading(), scorePose.getHeading());
+}
+
+public void autonomousPathUpdate() {
+    switch (pathState) {
+        case 0:
+            boolean pathStarted = false;
+            if (!follower.isBusy() && !pathStarted) {
+                follower.followPath(scorePreLoad, true);
+                pathStarted = true;
+            }
+            if (pathStarted && !follower.isBusy()) {
+                boolean outtakeStarted = false;
+                if (!outtakeStarted) {
+                    patherTimer.resetTimer();
+                    outtakeStarted = true;
+                }
+                if (patherTimer.getElapsedTimeSeconds() < 4.0) {
+                    outtakeOn();
+                } else {
+                    outtakeOff
+                }
+            }
+    }
 }
 }
 
