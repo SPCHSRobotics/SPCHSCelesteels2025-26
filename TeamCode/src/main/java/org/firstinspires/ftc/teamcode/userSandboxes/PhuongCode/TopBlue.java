@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode.userSandboxes.PhuongCode;
-package org.firstinspires.ftc.teamcode.pedroPathing; // make sure this aligns with class location
+
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.geometry.Pose;
@@ -18,5 +18,24 @@ public class TopBlue extends LinearOpMode {
     private Timer pathTimer, actionTimer, opmodeTimer;
     private int pathState;
 
-    
+
+    @Override
+    public void runOpMode() throws InterruptedException {
+
+
+        waitForStart();
+        //
+        while(opModeIsActive()){
+            if (pathState == 1) {
+
+                
+            }
+            if (pathState == 2){
+
+            }
+            if (pathState == 3){
+
+            }
+        }
+    }
 }
