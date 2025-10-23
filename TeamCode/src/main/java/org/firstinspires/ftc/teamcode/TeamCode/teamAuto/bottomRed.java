@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.TeamCode;
+package org.firstinspires.ftc.teamcode.TeamCode.teamAuto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -100,23 +100,12 @@ public class bottomRed extends LinearOpMode {
         backLeftDrive.setPower(FORWARD_SPEED);
         backRightDrive.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+        while (opModeIsActive() && (runtime.seconds() < 2.0)) {
             telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
 
 
-            // Step 3:  Drive Backward for 1 Second
-            frontLeftDrive.setPower(-FORWARD_SPEED);
-            frontRightDrive.setPower(-FORWARD_SPEED);
-            backRightDrive.setPower(-FORWARD_SPEED);
-            backLeftDrive.setPower(-FORWARD_SPEED);
-            runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 1.0)) {
-                telemetry.addData("Path", "Leg 3: %4.1f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-
-            // Step 4:  Stop
+            // Step 2:  Stop
             frontLeftDrive.setPower(0);
             frontRightDrive.setPower(0);
             backLeftDrive.setPower(0);
