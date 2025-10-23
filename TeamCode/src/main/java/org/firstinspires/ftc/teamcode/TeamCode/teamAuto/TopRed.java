@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="Scrimmage Top Blue Auto",group="Linear OpMode")
-public class topBlue extends LinearOpMode{
+@Autonomous(name="Scrimmage Top Red Auto",group="Linear OpMode")
+public class TopRed extends LinearOpMode{
 
     private final ElapsedTime runtime = new ElapsedTime();
 
@@ -53,11 +53,11 @@ public class topBlue extends LinearOpMode{
             telemetry.update();
         }
 
-        // Step 2:  Spin right for 1.3 seconds
-        frontLeftDrive.setPower(TURN_SPEED);
-        backLeftDrive.setPower(TURN_SPEED);
-        frontRightDrive.setPower(-TURN_SPEED);
-        backRightDrive.setPower(-TURN_SPEED);
+        // Step 2:  Spin left for 1.3 seconds
+        frontLeftDrive.setPower(-TURN_SPEED);
+        backLeftDrive.setPower(-TURN_SPEED);
+        frontRightDrive.setPower(TURN_SPEED);
+        backRightDrive.setPower(TURN_SPEED);
         runtime.reset();
 
         while (opModeIsActive() && (runtime.seconds() < 1.3)) {
@@ -86,3 +86,4 @@ public class topBlue extends LinearOpMode{
         sleep(1000);
     }
 }
+
