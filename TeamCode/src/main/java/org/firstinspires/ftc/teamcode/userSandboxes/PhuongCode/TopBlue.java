@@ -28,12 +28,14 @@ public class TopBlue extends LinearOpMode {
         while(opModeIsActive()){
             if (pathState == 1) {
 
-                
+                pathState++;
             }
             if (pathState == 2){
 
+                pathState++;
             }
             if (pathState == 3){
+
 
             }
         }
