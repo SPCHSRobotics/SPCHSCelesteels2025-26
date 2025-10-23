@@ -48,7 +48,9 @@ public void autonomousPathUpdate() {
                 if (patherTimer.getElapsedTimeSeconds() < 4.0) {
                     outtakeOn();
                 } else {
-                    outtakeOff
+                    outtakeOff();
+                    pathStarted = false
+                            
                 }
             }
     }
