@@ -103,7 +103,7 @@ public class alinaMotifExample extends LinearOpMode {
         }
     }
 
-    // a place to put your intake and shooting functions
+    // a place to put your intake and shooting functions, commented out until color sensor
     public void intakeArtifacts() {
         /*
         DcMotor intakeMotor;
