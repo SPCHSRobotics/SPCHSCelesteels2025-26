@@ -9,53 +9,49 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.pedropathing.paths.Path;
 import com.pedropathing.util.Timer;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import javax.xml.xpath.XPath;
 
 @Autonomous(name = "sofiaPPBottomBlue", group = "Linear OpMode")
 @Configurable
 public abstract class sofiaPedroPathing extends LinearOpMode {
-private Follower follower;
-private Timer patherTimer, actionTimer, opmodeTimer;
-private int pathState;
 
-private final Pose startPose = new Pose (56, 8, Math.toRadians(90));
-private final Pose scorePose = new Pose(72.5,22, Math.toRadians(110));
-private final Pose apriltagePose = new Pose();
-private final Pose intakePPGPose1 = new Pose();
+    private Follower follower;
+    private Timer patherTimer, actionTimer, opmodeTimer;
+    private int pathState = 0;
 
-private Path scorePreLoad;
+    private final Pose startPose = new Pose(56, 8, Math.toRadians(90));
+    private final Pose scorePose = new Pose(72.5, 22, Math.toRadians(110));
+    private final Pose apriltagePose = new Pose();
+    private final Pose intakePPGPose1 = new Pose();
 
-public void buildPaths() {
-scorePreLoad = new Path(new BezierLine(startPose, scorePose));
-scorePreLoad.setLinearHeadingInterpolation(startPose.getHeading(), scorePose.getHeading());
-}
+    private Path scorePreLoad;
+    private ElapsedTime pathTimer = new ElapsedTime();
 
-public void autonomousPathUpdate() {
-    switch (pathState) {
-        case 0:
-            boolean pathStarted = false;
-            if (!follower.isBusy() && !pathStarted) {
-                follower.followPath(scorePreLoad, true);
-                pathStarted = true;
-            }
-            if (pathStarted && !follower.isBusy()) {
-                boolean outtakeStarted = false;
-                if (!outtakeStarted) {
-                    patherTimer.resetTimer();
-                    outtakeStarted = true;
-                }
-                if (patherTimer.getElapsedTimeSeconds() < 4.0) {
-                    outtakeOn();
-                } else {
-                    outtakeOff();
-                    pathStarted = false
-                            
-                }
-            }
+    // -----------------------------
+    public void buildPaths() {
+        scorePreLoad = new Path(new BezierLine(startPose, scorePose));
+        scorePreLoad.setLinearHeadingInterpolation(startPose.getHeading(), scorePose.getHeading());
+    }
+
+    // -----------------------------
+    public void autonomousPathUpdate() {
+        switch (pathState) {
+            case 0:
+                follower.followPath(scorePreLoad);
+                setPathState(1);
+                break;
+        }
+    }
+
+    // -----------------------------
+    public void setPathState(int pState) {
+        pathState = pState;
+        pathTimer.reset();
     }
 }
-}
+
 
 /* @Autonomous(name = "sofiaPPBottomBlue", group = "Linear OpMode"
  private Follower follower;
