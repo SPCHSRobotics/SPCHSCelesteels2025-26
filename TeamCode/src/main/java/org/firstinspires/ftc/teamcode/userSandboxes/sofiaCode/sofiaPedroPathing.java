@@ -2,10 +2,13 @@ package org.firstinspires.ftc.teamcode.userSandboxes.sofiaCode;
 
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
+import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.geometry.Pose;
+import com.pedropathing.paths.PathChain;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import java.nio.file.Path;
 import java.util.Timer;
 
 import javax.xml.xpath.XPath;
@@ -17,10 +20,19 @@ private Follower follower;
 private Timer patherTimer, actionTimer, opmodeTimer;
 private int pathState;
 
-private final Pose startPose = new Pose();
-private final Pose scorePose = new Pose();
+private final Pose startPose = new Pose (56, 8, Math.toRadians(90));
+private final Pose scorePose = new Pose(72.5,22, Math.toRadians(110));
 private final Pose apriltagePose = new Pose();
 private final Pose intakePPGPose1 = new Pose();
+
+private Path scorePreLoad;
+private PathChain
+
+public void buildPaths() {
+scorePreLoad = new Path(new BezierLine(startPose, scorePose));
+scorePreLoad.setHeadingInterpolation(startPose.getHeading())
+}
+}
 
 /* @Autonomous(name = "sofiaPPBottomBlue", group = "Linear OpMode"
  private Follower follower;
@@ -129,6 +141,28 @@ private final Pose intakePPGPose1 = new Pose();
 public void autonomousPathUpdate() {
     switch (pathState) {
         case 0: start to score path
+            if (!follower.isBusy() && !pathStarted) {
+                follower.followPath(scorePreLoad, true);
+                pathStarted = true
+        }
+            if (pathStarted && !follower.isBusy()) {
+                if (!outtakeStarted) {
+                    pathTimer.reset ()
+                    outtakeStarted = true
+            }
+            if (pathTimer.seconds() < 4.0) {
+                outtakeOn();
+            } else {
+                outtakeOff();
+                pathStarted = false;
+                outtakeStarted = false;
+                setPathState(2);
+            }
+        }
+    break;
+
+
+
             follower.followPath(scorePreLoad/basically does the scorePreLoad path written above)
             setPathState(1/goes to case 1)
             } break;
@@ -155,10 +189,11 @@ public void autonomousPathUpdate() {
             } break;
         case 3: shoot bottom row
             if (!follower.isBusy()) {
-            follower.followPath(scorePPG1, true);
+                follower.followPath(scorePPG1, true);
+                pathStarted = true;
             }
-            if (!follower.isBusy() && follower.HasFinishedPath()) {
-                outtakeOff
+            if (pathStarted && !follower.isBusy()) {
+
 
 
  */
