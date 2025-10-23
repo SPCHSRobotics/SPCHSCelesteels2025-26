@@ -8,30 +8,43 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 //alina outtake function
 public class alinaSpin {
-    public DcMotor outtakeMotor;
+    public DcMotor outtakeMotorLeft;
+    public DcMotor outtakeMotorRight;
 
     public alinaSpin(HardwareMap hardwareMap) {
         //call intake motor
-        outtakeMotor = hardwareMap.get(DcMotor.class,"outtakeMotor");
+        outtakeMotorLeft = hardwareMap.get(DcMotor.class,"LeftOuttake");
+        outtakeMotorRight = hardwareMap.get(DcMotor.class,"RightOuttake");
+
+
         //set intake motor reverse
-        outtakeMotor.setDirection(DcMotor.Direction.FORWARD);
+        outtakeMotorLeft.setDirection(DcMotor.Direction.REVERSE);
+        outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
     }
 
     public void alinaSpinFunction(Gamepad gamepad2, Telemetry telemetry){
 
-        double outtakePower = 0;
-
+        double outtakePower;
+        //when x is held, full power (6000 rpm), when b is held, half power (3000?), when both released, no power
         if (gamepad2.xWasPressed()){
-            outtakePower=200;
+            outtakePower=1;
+            outtakeMotorLeft.setPower(outtakePower);
+            outtakeMotorRight.setPower(outtakePower);
 
-            outtakeMotor.setPower(outtakePower);
-        } else if (gamepad2.yWasPressed()) {
+        } else if (gamepad2.bWasPressed()) {
+            outtakePower=0.5;
+            outtakeMotorLeft.setPower(outtakePower);
+            outtakeMotorRight.setPower(outtakePower);
+
+        } else {
             outtakePower=0;
-            outtakeMotor.setPower(outtakePower);
+            outtakeMotorLeft.setPower(outtakePower);
+            outtakeMotorRight.setPower(outtakePower);
+
         }
 
         //show what the intake power is on driver hub
-        telemetry.addData("outtake power:", "%4.2f",outtakePower);
+        telemetry.addData("outtake power:",outtakePower);
         telemetry.update();
 
     }

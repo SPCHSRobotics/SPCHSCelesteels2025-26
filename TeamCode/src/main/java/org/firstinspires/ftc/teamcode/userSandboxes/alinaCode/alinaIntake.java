@@ -18,12 +18,12 @@ public class alinaIntake {
     public void alinaIntakeFunction(Gamepad gamepad2, Telemetry telemetry){
 
         double intakePower = 0;
-
+        //holding down a turns on intake
         if (gamepad2.aWasPressed()){
-            intakePower=200;
+            intakePower=1;
             intakeMotor.setPower(intakePower);
 
-        } else if (gamepad2.bWasPressed()) {
+        } else if (gamepad2.aWasReleased()) {
             intakePower=0;
             intakeMotor.setPower(intakePower);
 

@@ -24,14 +24,14 @@ public class teamIntake {
             intakePower = 1;
             intakeMotor.setPower(intakePower);
             //show what the intake power is on the driver hub
-            telemetry.addData("intake power:", "%4.2f", intakePower);
+            telemetry.addData("intake power:", intakePower);
             telemetry.update();
 
         } else if (gamepad2.bWasPressed()) {
             intakePower = 0;
             intakeMotor.setPower(intakePower);
             //show what the intake power is on the driver hub
-            telemetry.addData("intake power:", "%4.2f", intakePower);
+            telemetry.addData("intake power:", intakePower);
             telemetry.update();
         }
         //show what the intake power is on the driver hub
