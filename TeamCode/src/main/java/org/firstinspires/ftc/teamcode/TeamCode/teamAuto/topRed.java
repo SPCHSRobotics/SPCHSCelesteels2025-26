@@ -14,9 +14,13 @@ public class topRed extends LinearOpMode{
     public DcMotor frontRightDrive;
     public DcMotor backLeftDrive;
     public DcMotor backRightDrive;
+    public DcMotor outtakeMotorLeft;
+    public DcMotor outtakeMotorRight;
+
 
     static final double     FORWARD_SPEED = 1;
     static final double     TURN_SPEED    = 0.3;
+    static final double     SHOOTING_SPEED= .75;
     @Override
     public void runOpMode() {
 
@@ -53,17 +57,30 @@ public class topRed extends LinearOpMode{
             telemetry.update();
         }
 
-        // Step 2:  Spin left for 1.3 seconds
+        // Step 2:  Spin left for 2 seconds
         frontLeftDrive.setPower(-TURN_SPEED);
         backLeftDrive.setPower(-TURN_SPEED);
         frontRightDrive.setPower(TURN_SPEED);
         backRightDrive.setPower(TURN_SPEED);
         runtime.reset();
 
-        while (opModeIsActive() && (runtime.seconds() < 1.3)) {
+        while (opModeIsActive() && (runtime.seconds() < 2)) {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
-        }
+            outtakeMotorLeft.setPower(SHOOTING_SPEED);
+            outtakeMotorRight.setPower(SHOOTING_SPEED);
+            runtime.reset();
+            while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+                telemetry.addData("Outtake Status:", "On", runtime.seconds());
+                telemetry.update();
+                //turn outtake off
+                outtakeMotorRight.setPower(0);
+                outtakeMotorLeft.setPower(0);
+                telemetry.addData("Outtake Status:", "Complete");
+                telemetry.update();
+                sleep(8000);
+
+            }
 
         //Step 3: Go forward for 3 seconds
         frontRightDrive.setPower(FORWARD_SPEED);
@@ -85,5 +102,5 @@ public class topRed extends LinearOpMode{
         telemetry.update();
         sleep(1000);
     }
-}
+}}
 
