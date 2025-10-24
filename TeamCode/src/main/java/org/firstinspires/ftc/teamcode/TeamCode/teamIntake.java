@@ -24,6 +24,7 @@ public class teamIntake {
             intakePower=1;
             intakeMotor.setPower(intakePower);
 
+
         } else if (gamepad2.aWasReleased()) {
             intakePower=0;
             intakeMotor.setPower(intakePower);
@@ -32,7 +33,6 @@ public class teamIntake {
 
         //show what the intake power is on driver hub
         telemetry.addData("intake power:",intakePower);
-        telemetry.update();
 
     }
     }

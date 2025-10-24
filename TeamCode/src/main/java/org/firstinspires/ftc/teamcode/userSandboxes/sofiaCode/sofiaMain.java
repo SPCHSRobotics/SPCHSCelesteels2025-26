@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Disabled
-    @TeleOp(name="Basic: Omni Linear OpMode", group="Linear OpMode")
+@TeleOp(name="Basic: Omni Linear OpMode", group="Linear OpMode")
     
     public class sofiaMain extends LinearOpMode {
 
