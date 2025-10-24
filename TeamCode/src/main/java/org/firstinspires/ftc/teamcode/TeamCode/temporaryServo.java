@@ -14,14 +14,18 @@ public class temporaryServo {
     }
 
     public void temporaryServoFunction (Gamepad gamepad2, Telemetry telemetry){
-        double servoPose;
+        double servoPose=0;
+
         if (gamepad2.yWasPressed()){
-            servoPose=1;
+            servoPose = 1;
             servoArm.setPosition(servoPose);
+
         }else if (gamepad2.yWasReleased()){
-            servoPose=0;
+            servoPose = 0.5;
             servoArm.setPosition(servoPose);
+
         }
 
+        telemetry.addData("servo pose:", servoPose);
     }
 }

@@ -39,15 +39,14 @@ public class teamOuttake {
             outtakeMotorLeft.setPower(outtakePower);
             outtakeMotorRight.setPower(outtakePower);
 
+
         } else if (gamepad2.bWasReleased()|| gamepad2.xWasReleased()){
             outtakePower=0;
             outtakeMotorLeft.setPower(outtakePower);
             outtakeMotorRight.setPower(outtakePower);
-        }
 
-        //show what the intake power is on driver hub
+        }
         telemetry.addData("outtake power:",outtakePower);
-        telemetry.update();
 
     }
 }
