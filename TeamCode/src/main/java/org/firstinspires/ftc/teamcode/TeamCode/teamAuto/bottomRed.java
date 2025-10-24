@@ -108,8 +108,8 @@ public class bottomRed extends LinearOpMode {
                 telemetry.update();
                 sleep(8000);
 
-
             }
+
         }
     }}
 
