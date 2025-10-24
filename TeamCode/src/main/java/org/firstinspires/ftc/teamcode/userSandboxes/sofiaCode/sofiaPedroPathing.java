@@ -2,25 +2,56 @@ package org.firstinspires.ftc.teamcode.userSandboxes.sofiaCode;
 
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
+import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.geometry.Pose;
+import com.pedropathing.paths.PathChain;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import java.util.Timer;
+import com.pedropathing.paths.Path;
+import com.pedropathing.util.Timer;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import javax.xml.xpath.XPath;
 
 @Autonomous(name = "sofiaPPBottomBlue", group = "Linear OpMode")
 @Configurable
-public class sofiaPedroPathing extends LinearOpMode {
-private Follower follower;
-private Timer patherTimer, actionTimer, opmodeTimer;
-private int pathState;
+public abstract class sofiaPedroPathing extends LinearOpMode {
 
-private final Pose startPose = new Pose();
-private final Pose scorePose = new Pose();
-private final Pose apriltagePose = new Pose();
-private final Pose intakePPGPose1 = new Pose();
+    private Follower follower;
+    private Timer patherTimer, actionTimer, opmodeTimer;
+    private int pathState = 0;
+
+    private final Pose startPose = new Pose(56, 8, Math.toRadians(90));
+    private final Pose scorePose = new Pose(72.5, 22, Math.toRadians(110));
+    private final Pose apriltagePose = new Pose();
+    private final Pose intakePPGPose1 = new Pose();
+
+    private Path scorePreLoad;
+    private ElapsedTime pathTimer = new ElapsedTime();
+
+    // -----------------------------
+    public void buildPaths() {
+        scorePreLoad = new Path(new BezierLine(startPose, scorePose));
+        scorePreLoad.setLinearHeadingInterpolation(startPose.getHeading(), scorePose.getHeading());
+    }
+
+    // -----------------------------
+    public void autonomousPathUpdate() {
+        switch (pathState) {
+            case 0:
+                follower.followPath(scorePreLoad);
+                setPathState(1);
+                break;
+        }
+    }
+
+    // -----------------------------
+    public void setPathState(int pState) {
+        pathState = pState;
+        pathTimer.reset();
+    }
+}
+
 
 /* @Autonomous(name = "sofiaPPBottomBlue", group = "Linear OpMode"
  private Follower follower;
@@ -129,6 +160,28 @@ private final Pose intakePPGPose1 = new Pose();
 public void autonomousPathUpdate() {
     switch (pathState) {
         case 0: start to score path
+            if (!follower.isBusy() && !pathStarted) {
+                follower.followPath(scorePreLoad, true);
+                pathStarted = true
+        }
+            if (pathStarted && !follower.isBusy()) {
+                if (!outtakeStarted) {
+                    pathTimer.reset ()
+                    outtakeStarted = true
+            }
+            if (pathTimer.seconds() < 4.0) {
+                outtakeOn();
+            } else {
+                outtakeOff();
+                pathStarted = false;
+                outtakeStarted = false;
+                setPathState(2);
+            }
+        }
+    break;
+
+
+
             follower.followPath(scorePreLoad/basically does the scorePreLoad path written above)
             setPathState(1/goes to case 1)
             } break;
@@ -155,10 +208,11 @@ public void autonomousPathUpdate() {
             } break;
         case 3: shoot bottom row
             if (!follower.isBusy()) {
-            follower.followPath(scorePPG1, true);
+                follower.followPath(scorePPG1, true);
+                pathStarted = true;
             }
-            if (!follower.isBusy() && follower.HasFinishedPath()) {
-                outtakeOff
+            if (pathStarted && !follower.isBusy()) {
+
 
 
  */

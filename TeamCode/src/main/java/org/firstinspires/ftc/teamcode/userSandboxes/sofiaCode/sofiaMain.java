@@ -6,10 +6,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-public class sofiaMain {
+@Disabled
     @TeleOp(name="Basic: Omni Linear OpMode", group="Linear OpMode")
     
-    public class BasicOmniOpMode_Linear extends LinearOpMode {
+    public class sofiaMain extends LinearOpMode {
 
         // Declare OpMode members for each of the 4 motors.
         private ElapsedTime runtime = new ElapsedTime();
@@ -110,4 +110,3 @@ public class sofiaMain {
             }
         }}
 
-}

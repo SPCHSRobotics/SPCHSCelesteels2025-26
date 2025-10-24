@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="Scrimmage Top Red Auto",group="Linear OpMode")
-public class TopRed extends LinearOpMode{
+public class topRed extends LinearOpMode{
 
     private final ElapsedTime runtime = new ElapsedTime();
 
