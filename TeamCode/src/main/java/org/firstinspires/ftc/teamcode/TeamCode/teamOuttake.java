@@ -18,8 +18,8 @@ public class teamOuttake {
 
 
         //set intake motor reverse
-        outtakeMotorLeft.setDirection(DcMotor.Direction.REVERSE);
-        outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
+        outtakeMotorLeft.setDirection(DcMotor.Direction.FORWARD);
+        outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD    );
 
         outtakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         outtakeMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

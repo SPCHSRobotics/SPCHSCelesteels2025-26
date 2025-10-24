@@ -12,7 +12,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 
 
-@Autonomous(name="Scrimmage Bottom Red", group="Robot")
+@Autonomous(name="Scrimmage Bottom Red", group="Linear OpMode")
 public class bottomRed extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -42,7 +42,7 @@ public class bottomRed extends LinearOpMode {
         outtakeMotorLeft = hardwareMap.get(DcMotor.class, "LeftOuttake");
         outtakeMotorRight = hardwareMap.get(DcMotor.class, "RightOuttake");
         //set outtake motor reverse
-        outtakeMotorLeft.setDirection(DcMotor.Direction.REVERSE);
+        outtakeMotorLeft.setDirection(DcMotor.Direction.FORWARD);
         outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
 
         outtakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
