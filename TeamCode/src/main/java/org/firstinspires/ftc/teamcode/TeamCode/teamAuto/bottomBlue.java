@@ -12,8 +12,8 @@ public class bottomBlue extends LinearOpMode {
     public DcMotor frontRightDrive;
     public DcMotor backLeftDrive;
     public DcMotor backRightDrive;
-    public DcMotor outtakeMotorLeft = null;
-    public DcMotor outtakeMotorRight = null;
+    public DcMotor outtakeMotorLeft;
+    public DcMotor outtakeMotorRight;
 
 
     private ElapsedTime runtime = new ElapsedTime();
@@ -45,7 +45,6 @@ public class bottomBlue extends LinearOpMode {
         outtakeMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // When run, this OpMode should start both motors driving forward. So adjust these two lines based on your first test drive.
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
@@ -59,36 +58,16 @@ public class bottomBlue extends LinearOpMode {
 
         // Step through each leg of the path, ensuring that the OpMode has not been stopped along the way.
 
-        // Step 1:  Drive forward for 2 seconds
-        frontLeftDrive.setPower(FORWARD_SPEED);
-        backLeftDrive.setPower(FORWARD_SPEED);
-        frontLeftDrive.setPower(FORWARD_SPEED);
-        backRightDrive.setPower(FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 2.0)) {
-            telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
-        //Step 2: Turn
+        //Step 1: Aiming
         frontLeftDrive.setPower(-TURN_SPEED);
         frontRightDrive.setPower(TURN_SPEED);
         backLeftDrive.setPower(-FORWARD_SPEED);
         backRightDrive.setPower(TURN_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.0)) {
+        while (opModeIsActive() && (runtime.seconds() < 1.2)) {
             telemetry.addData("Path", "aiming", runtime.seconds());
             telemetry.update();
-
-        // Step 3:  Stop
-        backLeftDrive.setPower(0);
-        frontLeftDrive.setPower(0);
-        frontRightDrive.setPower(0);
-        backRightDrive.setPower(0);
-
-        telemetry.addData("Path", "Complete");
-        telemetry.update();
-        sleep(1000);
-        //turn outtake on
+            //turn outtake on
             outtakeMotorLeft.setPower(SHOOTING_FULL_POWER);
             outtakeMotorRight.setPower(SHOOTING_FULL_POWER);
             runtime.reset();
@@ -102,8 +81,42 @@ public class bottomBlue extends LinearOpMode {
                 telemetry.update();
                 sleep(8000);
 
+                // Step 2:  Drive forward
+                frontLeftDrive.setPower(FORWARD_SPEED);
+                backLeftDrive.setPower(FORWARD_SPEED);
+                frontLeftDrive.setPower(FORWARD_SPEED);
+                backRightDrive.setPower(FORWARD_SPEED);
+                runtime.reset();
+                while (opModeIsActive() && (runtime.seconds() < 2.0)) {
+                    telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
+                    telemetry.update();
 
-    }
-}
-    }
-}
+                    // Step 3:  Stop
+                    backLeftDrive.setPower(0);
+                    frontLeftDrive.setPower(0);
+                    frontRightDrive.setPower(0);
+                    backRightDrive.setPower(0);
+
+                    telemetry.addData("Path", "Complete");
+                    telemetry.update();
+                    sleep(1000);
+                    //turn outtake on
+                    outtakeMotorLeft.setPower(SHOOTING_FULL_POWER);
+                    outtakeMotorRight.setPower(SHOOTING_FULL_POWER);
+                    runtime.reset();
+                    while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+                        telemetry.addData("Outtake Status:", "On", runtime.seconds());
+                        telemetry.update();
+                        //turn outtake off
+                        outtakeMotorRight.setPower(0);
+                        outtakeMotorLeft.setPower(0);
+                        telemetry.addData("Outtake Status:", "Complete");
+                        telemetry.update();
+                        sleep(8000);
+
+
+                    }
+                }
+            }
+        }
+    }}

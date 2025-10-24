@@ -16,12 +16,12 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class bottomRed extends LinearOpMode {
 
     /* Declare OpMode members. */
-   public DcMotor frontLeftDrive = null;
-   public DcMotor frontRightDrive = null;
-   public DcMotor backLeftDrive = null;
-   public DcMotor backRightDrive = null;
-    public DcMotor outtakeMotorLeft = null;
-    public DcMotor outtakeMotorRight = null;
+   public DcMotor frontLeftDrive;
+   public DcMotor frontRightDrive;
+   public DcMotor backLeftDrive;
+   public DcMotor backRightDrive;
+    public DcMotor outtakeMotorLeft;
+    public DcMotor outtakeMotorRight;
 
     private final ElapsedTime runtime = new ElapsedTime();
 
@@ -65,25 +65,38 @@ public class bottomRed extends LinearOpMode {
 
         // Step through each leg of the path, ensuring that the OpMode has not been stopped along the way.
 
-        // Step 1:  Drive forward for 3 seconds
-        frontLeftDrive.setPower(FORWARD_SPEED);
-        frontRightDrive.setPower(FORWARD_SPEED);
-        backLeftDrive.setPower(FORWARD_SPEED);
-        backRightDrive.setPower(FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
-            telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
-            telemetry.update();
-            //Step 2: Turn
+        //Step 1: Aiming
             frontLeftDrive.setPower(TURN_SPEED);
             frontRightDrive.setPower(-TURN_SPEED);
             backLeftDrive.setPower(TURN_SPEED);
             backRightDrive.setPower(-TURN_SPEED);
             runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 1.0)) {
+            while (opModeIsActive() && (runtime.seconds() < 1.2)) {
                 telemetry.addData("Path", "aiming", runtime.seconds());
                 telemetry.update();
+                //turn outtake on
+                outtakeMotorLeft.setPower(SHOOTING_FULL_POWER);
+                outtakeMotorRight.setPower(SHOOTING_FULL_POWER);
+                runtime.reset();
+                while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+                    telemetry.addData("Outtake Status:", "On", runtime.seconds());
+                    telemetry.update();
+                    //turn outtake off
+                    outtakeMotorRight.setPower(0);
+                    outtakeMotorLeft.setPower(0);
+                    telemetry.addData("Outtake Status:", "Complete");
+                    telemetry.update();
+                    sleep(8000);
             }
+                //Step 2: Move forward
+                frontLeftDrive.setPower(FORWARD_SPEED);
+                backLeftDrive.setPower(FORWARD_SPEED);
+                frontLeftDrive.setPower(FORWARD_SPEED);
+                backRightDrive.setPower(FORWARD_SPEED);
+                runtime.reset();
+                while (opModeIsActive() && (runtime.seconds() < 2.0)) {
+                    telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
+                    telemetry.update();
 
          // Step 3:  Stop
             frontLeftDrive.setPower(0);
@@ -94,24 +107,11 @@ public class bottomRed extends LinearOpMode {
             telemetry.addData("Path", "Complete");
             telemetry.update();
             sleep(1000);
-            //turn outtake on
-            outtakeMotorLeft.setPower(SHOOTING_FULL_POWER);
-            outtakeMotorRight.setPower(SHOOTING_FULL_POWER);
-            runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 3.0)) {
-                telemetry.addData("Outtake Status:", "On", runtime.seconds());
-                telemetry.update();
-                //turn outtake off
-                outtakeMotorRight.setPower(0);
-                outtakeMotorLeft.setPower(0);
-                telemetry.addData("Outtake Status:", "Complete");
-                telemetry.update();
-                sleep(8000);
 
-            }
 
         }
     }}
+}
 
 
 
