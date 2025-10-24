@@ -28,7 +28,7 @@ public class bottomRed extends LinearOpMode {
 
     static final double     FORWARD_SPEED = 1;
     static final double     SHOOTING_FULL_POWER = 1;
-
+    static final double     TURN_SPEED = 0.5;
 
     @Override
     public void runOpMode() {
@@ -75,10 +75,10 @@ public class bottomRed extends LinearOpMode {
             telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
             //Step 2: Turn
-            frontLeftDrive.setPower(FORWARD_SPEED);
-            frontRightDrive.setPower(-FORWARD_SPEED);
-            backLeftDrive.setPower(FORWARD_SPEED);
-            backRightDrive.setPower(-FORWARD_SPEED);
+            frontLeftDrive.setPower(TURN_SPEED);
+            frontRightDrive.setPower(-TURN_SPEED);
+            backLeftDrive.setPower(TURN_SPEED);
+            backRightDrive.setPower(-TURN_SPEED);
             runtime.reset();
             while (opModeIsActive() && (runtime.seconds() < 1.0)) {
                 telemetry.addData("Path", "aiming", runtime.seconds());

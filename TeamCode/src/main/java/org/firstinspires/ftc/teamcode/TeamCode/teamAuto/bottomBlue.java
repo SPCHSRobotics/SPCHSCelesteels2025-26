@@ -70,10 +70,10 @@ public class bottomBlue extends LinearOpMode {
             telemetry.update();
         }
         //Step 2: Turn
-        frontLeftDrive.setPower(-FORWARD_SPEED);
-        frontRightDrive.setPower(FORWARD_SPEED);
+        frontLeftDrive.setPower(-TURN_SPEED);
+        frontRightDrive.setPower(TURN_SPEED);
         backLeftDrive.setPower(-FORWARD_SPEED);
-        backRightDrive.setPower(FORWARD_SPEED);
+        backRightDrive.setPower(TURN_SPEED);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.0)) {
             telemetry.addData("Path", "aiming", runtime.seconds());
