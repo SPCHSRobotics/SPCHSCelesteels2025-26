@@ -37,9 +37,10 @@ public class topBlue extends LinearOpMode{
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(FORWARD);
         backRightDrive.setDirection(FORWARD);
-        outtakeMotorLeft.setDirection(DcMotor.Direction.REVERSE);
+        outtakeMotorLeft.setDirection(FORWARD);
         outtakeMotorRight.setDirection(FORWARD);
-
+        outtakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        outtakeMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Ready to run");
