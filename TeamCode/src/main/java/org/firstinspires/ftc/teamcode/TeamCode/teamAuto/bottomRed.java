@@ -4,8 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -22,6 +21,7 @@ public class bottomRed extends LinearOpMode {
    public DcMotor backRightDrive;
     public DcMotor outtakeMotorLeft;
     public DcMotor outtakeMotorRight;
+    public Servo servoArm;
 
     private final ElapsedTime runtime = new ElapsedTime();
 
@@ -34,19 +34,13 @@ public class bottomRed extends LinearOpMode {
     public void runOpMode() {
 
         // Initialize the drive system variables.
-        frontLeftDrive = hardwareMap.get(DcMotor.class, "front_left_drive");
-        frontRightDrive = hardwareMap.get(DcMotor.class, "front_right_drive");
-        backRightDrive = hardwareMap.get(DcMotor.class, "back_left_drive");
-        backLeftDrive = hardwareMap.get(DcMotor.class, "back_right_drive");
+        frontLeftDrive = hardwareMap.get(DcMotor.class, "leftFrontDrive");
+        frontRightDrive = hardwareMap.get(DcMotor.class, "rightFrontDrive");
+        backRightDrive = hardwareMap.get(DcMotor.class, "leftBackDrive");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "rightBackDrive");
         //call outtake motor
         outtakeMotorLeft = hardwareMap.get(DcMotor.class, "LeftOuttake");
         outtakeMotorRight = hardwareMap.get(DcMotor.class, "RightOuttake");
-        //set outtake motor reverse
-        outtakeMotorLeft.setDirection(DcMotor.Direction.FORWARD);
-        outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
-
-        outtakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        outtakeMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // When run, this OpMode should start both motors driving forward. So adjust these two lines based on your first test drive.
@@ -55,6 +49,15 @@ public class bottomRed extends LinearOpMode {
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
         backRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        outtakeMotorLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        outtakeMotorRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        outtakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        outtakeMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Ready to run");    //
@@ -74,6 +77,7 @@ public class bottomRed extends LinearOpMode {
             while (opModeIsActive() && (runtime.seconds() < 1.2)) {
                 telemetry.addData("Path", "aiming", runtime.seconds());
                 telemetry.update();
+            }
                 //turn outtake on
                 outtakeMotorLeft.setPower(SHOOTING_FULL_POWER);
                 outtakeMotorRight.setPower(SHOOTING_FULL_POWER);
@@ -81,13 +85,13 @@ public class bottomRed extends LinearOpMode {
                 while (opModeIsActive() && (runtime.seconds() < 3.0)) {
                     telemetry.addData("Outtake Status:", "On", runtime.seconds());
                     telemetry.update();
+                }
                     //turn outtake off
                     outtakeMotorRight.setPower(0);
                     outtakeMotorLeft.setPower(0);
                     telemetry.addData("Outtake Status:", "Complete");
                     telemetry.update();
                     sleep(8000);
-            }
                 //Step 2: Move forward
                 frontLeftDrive.setPower(FORWARD_SPEED);
                 backLeftDrive.setPower(FORWARD_SPEED);
@@ -111,8 +115,6 @@ public class bottomRed extends LinearOpMode {
 
         }
     }}
-}
-
 
 
 

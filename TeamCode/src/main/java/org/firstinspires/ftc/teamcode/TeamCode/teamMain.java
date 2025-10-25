@@ -30,7 +30,7 @@ public class teamMain extends LinearOpMode {
             //call all the functions
             teamDrive.teamDriveFunction(gamepad1,telemetry);
             teamIntake.teamIntakeFunction(gamepad2,telemetry);
-            teamOuttake.teamOuttakeFunction(gamepad2,telemetry);
+            teamOuttake.teamOuttakeFunction(gamepad1,telemetry);
             temporaryServo.temporaryServoFunction(gamepad2,telemetry);
 
            //Show the elapsed game time, wheel power, intake power...(more stuff later:3)

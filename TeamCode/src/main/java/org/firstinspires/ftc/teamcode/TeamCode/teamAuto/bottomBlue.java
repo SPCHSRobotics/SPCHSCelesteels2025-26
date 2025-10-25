@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.TeamCode.teamAuto;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous (name = "scrimmage bottom blue auto", group = "Linear OpMode")
@@ -14,15 +16,17 @@ public class bottomBlue extends LinearOpMode {
     public DcMotor backRightDrive;
     public DcMotor outtakeMotorLeft;
     public DcMotor outtakeMotorRight;
+    public Servo servoArm;
 
 
     private ElapsedTime runtime = new ElapsedTime();
 
 
-    static final double     FORWARD_SPEED = 0.6;
-    static final double     TURN_SPEED    = 0.5;
-    static final double     SHOOTING_FULL_POWER = 1;
-
+    static final double FORWARD_SPEED = 0.6;
+    static final double TURN_SPEED = 0.5;
+    static final double SHOOTING_FULL_POWER = 1;
+    static final double SCOOP_POSITION=1;
+    static final double DEFAULT_POSITION=0.5;
     @Override
     public void runOpMode() {
 
@@ -33,14 +37,19 @@ public class bottomBlue extends LinearOpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "leftBackDrive");
         outtakeMotorLeft = hardwareMap.get(DcMotor.class, "LeftOuttake");
         outtakeMotorRight = hardwareMap.get(DcMotor.class, "RightOuttake");
+
         //set motors
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
         backRightDrive.setDirection(DcMotor.Direction.FORWARD);
-        outtakeMotorLeft.setDirection(DcMotor.Direction.REVERSE);
-        outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        outtakeMotorLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        outtakeMotorRight.setDirection(DcMotorSimple.Direction.FORWARD);
         outtakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         outtakeMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -77,46 +86,61 @@ public class bottomBlue extends LinearOpMode {
                 //turn outtake off
                 outtakeMotorRight.setPower(0);
                 outtakeMotorLeft.setPower(0);
+
                 telemetry.addData("Outtake Status:", "Complete");
                 telemetry.update();
-                sleep(8000);
 
-                // Step 2:  Drive forward
-                frontLeftDrive.setPower(FORWARD_SPEED);
-                backLeftDrive.setPower(FORWARD_SPEED);
-                frontLeftDrive.setPower(FORWARD_SPEED);
-                backRightDrive.setPower(FORWARD_SPEED);
-                runtime.reset();
+                //set sevro position
+                servoArm.setPosition(SCOOP_POSITION);
                 while (opModeIsActive() && (runtime.seconds() < 2.0)) {
-                    telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
+                    telemetry.addData("servo:", "position: 1", runtime.seconds());
                     telemetry.update();
+                }
 
-                    // Step 3:  Stop
-                    backLeftDrive.setPower(0);
-                    frontLeftDrive.setPower(0);
-                    frontRightDrive.setPower(0);
-                    backRightDrive.setPower(0);
+                    //go back to original position
+                    servoArm.setPosition(DEFAULT_POSITION);
+                    while (opModeIsActive() && (runtime.seconds() < 2.0)) {
+                        telemetry.addData("servo:", "position: 2", runtime.seconds());
+                        telemetry.update();
+                    }
 
-                    telemetry.addData("Path", "Complete");
-                    telemetry.update();
-                    sleep(1000);
+
                     //turn outtake on
                     outtakeMotorLeft.setPower(SHOOTING_FULL_POWER);
-                    outtakeMotorRight.setPower(SHOOTING_FULL_POWER);
-                    runtime.reset();
-                    while (opModeIsActive() && (runtime.seconds() < 3.0)) {
-                        telemetry.addData("Outtake Status:", "On", runtime.seconds());
-                        telemetry.update();
-                        //turn outtake off
-                        outtakeMotorRight.setPower(0);
-                        outtakeMotorLeft.setPower(0);
-                        telemetry.addData("Outtake Status:", "Complete");
-                        telemetry.update();
-                        sleep(8000);
+                            outtakeMotorRight.setPower(SHOOTING_FULL_POWER);
+                            runtime.reset();
+                            while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+                                telemetry.addData("Outtake Status:", "On", runtime.seconds());
+                                telemetry.update();
+                            }
+                                //turn outtake off
+                                outtakeMotorRight.setPower(0);
+                                outtakeMotorLeft.setPower(0);
+                                    telemetry.addData("Outtake Status:", "Off", runtime.seconds());
+                                    telemetry.update();
+                                sleep(8000);
 
+                                // Step 2:  Drive forward
+                                frontLeftDrive.setPower(FORWARD_SPEED);
+                                backLeftDrive.setPower(FORWARD_SPEED);
+                                frontLeftDrive.setPower(FORWARD_SPEED);
+                                backRightDrive.setPower(FORWARD_SPEED);
+                                runtime.reset();
+                                while (opModeIsActive() && (runtime.seconds() < 2.0)) {
+                                    telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
+                                    telemetry.update();
+                            }
+                                // Step 3:  Stop
+                                backLeftDrive.setPower(0);
+                                frontLeftDrive.setPower(0);
+                                frontRightDrive.setPower(0);
+                                backRightDrive.setPower(0);
 
+                                        telemetry.addData("Path", "Complete", runtime.seconds());
+                                        telemetry.update();
+                                sleep(1000);
+                        }
                     }
                 }
-            }
-        }
-    }}
+
+}
