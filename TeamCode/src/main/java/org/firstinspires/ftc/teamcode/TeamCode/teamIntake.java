@@ -18,11 +18,13 @@ public class teamIntake {
 
     public void teamIntakeFunction(Gamepad gamepad2, Telemetry telemetry){
 
+        // TODO: you should move setPower function to outside the if statements -Mentor Lucy
         double intakePower = 0;
         //holding down a turns on intake
         if (gamepad2.aWasPressed()){
             intakePower=1;
             intakeMotor.setPower(intakePower);
+
 
         } else if (gamepad2.aWasReleased()) {
             intakePower=0;
@@ -32,7 +34,6 @@ public class teamIntake {
 
         //show what the intake power is on driver hub
         telemetry.addData("intake power:",intakePower);
-        telemetry.update();
 
     }
     }

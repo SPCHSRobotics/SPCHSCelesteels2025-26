@@ -1,0 +1,22 @@
+Start at top blue coordinates (24,120,315) [x,y,h] (heading 0 is east, counterclockwise, based on unit circle)
+
+Move forward to (48,96,315), relative move is (24,-24,0)
+
+Turn around to (48,96,135), relative move is (0,0,-180)
+
+Launch Artifacts
+    Turn outtake on
+    Open Servo gate
+    Use servo arm
+
+// above is basic below is advanced
+
+Move to read obelisk
+
+Read Obelisk
+
+Move to artifact based on obelisk
+
+launch additional artifacts
+
+End

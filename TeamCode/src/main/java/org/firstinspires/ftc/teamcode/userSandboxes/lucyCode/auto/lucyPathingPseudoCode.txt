@@ -1,0 +1,44 @@
+            Math (motor instructions)
+
+Conversion
+    Unit
+        Multiply motor movements by internal gearbox, and wheel diameter to get a conversion to inches
+
+    Position
+        Robot will need to track it's current position and on each leg compare it to target position.
+        This will calculate relative position finding the breaking down the movements from absolute
+        (x,y,h) to relative (x,y,h), this way the bot can actually use it.
+            h stands for heading
+
+        for movement from (x0,y0,h0) -> (x1,y1,h1), relative would be (x1-x0,y1-y0,h1-h0)
+
+Individual Movements
+        These are fairly simple and need to fundamentally work, so we have to come back to this and have
+        it always work
+        All movements are done relative not absolute
+
+    Forward (x+)
+        All motors: forward 1 inch
+
+    Forward-Right (x+,y+)
+        Forward left and back right: forward 2(?) inches
+            not sure how much it should be, it might be sqrt(2)
+        Forward right and back left: do not move
+
+    Right (y+)
+        Forward Left, Back Right: Forward 1 inch
+        Back Left, Forward Right: Backward 1 inch
+
+Rotation
+    Rotate in place
+        Assume 18 inch cube bot
+        rotating in place would be a 90 degree rotation
+        radius sqrt(162) ~ 12.728
+        arc length of quarter, circumference/4
+        Circumference = 2pir
+        arc = piR/2
+        approx. 20 inches
+
+        rotate left 90 degrees
+        Left motors: forward 20 inches
+        Right motors: back 20 inches
