@@ -18,7 +18,6 @@ import org.firstinspires.ftc.teamcode.userSandboxes.lucyCode.auto.topBlue.lucyAu
 
 
 @Autonomous(name="Robot: Auto Drive By Encoder", group="Robot")
-@Disabled
 public class lucyAutoTopBlue extends LinearOpMode {
 
     // Init motors
