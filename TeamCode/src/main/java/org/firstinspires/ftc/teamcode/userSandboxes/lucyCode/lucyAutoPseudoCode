@@ -1,0 +1,30 @@
+This will run the robot through multiple defined positions with each step being defined as a leg.
+Each leg will do one movement or one action with either (x, y, heading/imu) coordinates for movement, or an
+action performed with servos/other motors
+
+Coordinates and positions should be defined in their own file named along the lines of autoCoordinates.
+This way you can edit the coordinates and angles in one file without messing with the logic and processes
+needed to execute the auto. This will help prevent many debugging issues.
+
+        LEGS/STEPS
+Init
+    Starting position is defined as (x0,y0, h0)
+
+Leg 1
+    Move forward without turning
+    Move to (x1,y1,h1)
+        y1 = y0, h1 = h0 but notated separately for ease of changing and having clear coordinates
+        each position, with x1 being the only one to change. This principle should be applied consistently
+        to have easy readability.
+        x1 = x0 + translation
+
+Leg 2
+    Turn right 90 degrees
+    Move to (x2, y2, h2)
+        x2 = x1, y2 = y1: these are unchanged
+        h2 = h1 + 90
+
+Additional Legs
+    Set target coordinates for where you want the desired position to be, doing one step at a time.
+
+
