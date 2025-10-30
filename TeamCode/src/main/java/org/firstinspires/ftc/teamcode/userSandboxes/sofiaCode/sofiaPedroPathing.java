@@ -11,6 +11,8 @@ import com.pedropathing.paths.Path;
 import com.pedropathing.util.Timer;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.TeamCode.teamDrive;
+
 import javax.xml.xpath.XPath;
 
 @Autonomous(name = "sofiaPPBottomBlue", group = "Linear OpMode")
@@ -19,14 +21,13 @@ public abstract class sofiaPedroPathing extends LinearOpMode {
 
     private Follower follower;
     private Timer patherTimer, actionTimer, opmodeTimer;
-    private int pathState = 0;
+    private int pathState;
 
-    private final Pose startPose = new Pose(56, 8, Math.toRadians(90));
+ /*   private final Pose startPose = new Pose(56, 8, Math.toRadians(90));
     private final Pose scorePose = new Pose(72.5, 22, Math.toRadians(110));
     private final Pose apriltagePose = new Pose();
     private final Pose intakePPGPose1 = new Pose();
-    MecanumDrive drive = new MecanumDrive(hardwareMap);
-    follower = new Follower(drive);
+    teamDrive teamDrive = new teamDrive(hardwareMap);/*follower = new Follower();
 
 
 
@@ -232,8 +233,4 @@ public void autonomousPathUpdate() {
                 follower.followPath(scorePPG1, true);
                 pathStarted = true;
             }
-            if (pathStarted && !follower.isBusy()) {
-
-
-
- */
+            if (pathStarted && !follower.isBusy()) {}
