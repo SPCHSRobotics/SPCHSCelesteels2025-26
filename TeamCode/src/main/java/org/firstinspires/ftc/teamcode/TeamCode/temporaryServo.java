@@ -16,16 +16,15 @@ public class temporaryServo {
     public void temporaryServoFunction (Gamepad gamepad2, Telemetry telemetry){
         double servoPose=0;
 
-        // TODO: move set position to outside if statements
         if (gamepad2.yWasPressed()){
             servoPose = 1;
-            servoArm.setPosition(servoPose);
 
         }else if (gamepad2.yWasReleased()){
             servoPose = 0.5;
-            servoArm.setPosition(servoPose);
 
         }
+        //set the position
+        servoArm.setPosition(servoPose);
 
         telemetry.addData("servo pose:", servoPose);
     }
