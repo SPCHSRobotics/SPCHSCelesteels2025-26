@@ -21,5 +21,24 @@ Individual Movements
         All motors: forward 1 inch
 
     Forward-Right (x+,y+)
-        
+        Forward left and back right: forward 2(?) inches
+            not sure how much it should be, it might be sqrt(2)
+        Forward right and back left: do not move
 
+    Right (y+)
+        Forward Left, Back Right: Forward 1 inch
+        Back Left, Forward Right: Backward 1 inch
+
+Rotation
+    Rotate in place
+        Assume 18 inch cube bot
+        rotating in place would be a 90 degree rotation
+        radius sqrt(162) ~ 12.728
+        arc length of quarter, circumference/4
+        Circumference = 2pir
+        arc = piR/2
+        approx. 20 inches
+
+        rotate left 90 degrees
+        Left motors: forward 20 inches
+        Right motors: back 20 inches
