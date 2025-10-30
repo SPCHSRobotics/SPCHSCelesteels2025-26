@@ -25,9 +25,29 @@ public abstract class sofiaPedroPathing extends LinearOpMode {
     private final Pose scorePose = new Pose(72.5, 22, Math.toRadians(110));
     private final Pose apriltagePose = new Pose();
     private final Pose intakePPGPose1 = new Pose();
+    MecanumDrive drive = new MecanumDrive(hardwareMap);
+    follower = new Follower(drive);
 
-    private Path scorePreLoad;
-    private ElapsedTime pathTimer = new ElapsedTime();
+
+
+    private final Path scorePreLoad;
+    private final ElapsedTime pathTimer = new ElapsedTime();
+
+    @Override
+    abstract public void runOpMode() throws InterruptedException;
+    follower = new Mecanum(hardwareMap);
+        follower.setPose(startPose);
+    buildPaths();
+        telemetry.addLine("Ready!");
+        telemetry.update();
+
+    waitforStart();
+
+        pathTimer.reset();
+
+    while (opModeIsActive() && !isStopRequested()) {
+        autonomousPathUpdate();
+        follower.update();
 
     // -----------------------------
     public void buildPaths() {
@@ -50,6 +70,7 @@ public abstract class sofiaPedroPathing extends LinearOpMode {
         pathState = pState;
         pathTimer.reset();
     }
+
 }
 
 
