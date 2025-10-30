@@ -27,6 +27,7 @@ public class teamOuttake {
 
     public void teamOuttakeFunction(Gamepad gamepad1, Telemetry telemetry){
 
+        // TODO: Move set power to outside if statements with only changing the outtake power in the if statements
         double outtakePower = 0;
         //when x is held, full power (6000 rpm), when b is held, half power (3000?), when both released, no power
         if (gamepad1.xWasPressed()){
