@@ -151,9 +151,11 @@ public class lucyAutoTopBlue extends LinearOpMode {
                     (frontLeftDrive.isBusy() && frontRightDrive.isBusy())) {
 
                 // Display it for the driver.
-                telemetry.addData("Running to", " %7d :%7d", newFrontLeftTarget, newFrontRightTarget);
-                telemetry.addData("Currently at", " at %7d :%7d",
-                        frontLeftDrive.getCurrentPosition(), frontRightDrive.getCurrentPosition());
+                telemetry.addData("Running to", " %5d :%5d :%5d :%5d",
+                        newFrontLeftTarget, newFrontRightTarget, newBackLeftTarget, newBackRightTarget);
+                telemetry.addData("Currently at", " at %5d :%5d :%5d :%5d",
+                        frontLeftDrive.getCurrentPosition(), frontRightDrive.getCurrentPosition(),
+                        backLeftDrive.getCurrentPosition(), backRightDrive.getCurrentPosition());
                 telemetry.update();
             }
 
