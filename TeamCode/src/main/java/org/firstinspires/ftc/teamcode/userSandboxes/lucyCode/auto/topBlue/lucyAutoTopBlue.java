@@ -31,11 +31,13 @@ public class lucyAutoTopBlue extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        // Get motor hardware mapping
         frontLeftDrive = hardwareMap.get(DcMotor.class, "leftFrontDrive");
         frontRightDrive = hardwareMap.get(DcMotor.class, "rightFrontDrive");
         backRightDrive = hardwareMap.get(DcMotor.class, "rightBackDrive");
         backLeftDrive = hardwareMap.get(DcMotor.class, "leftBackDrive");
 
+        // Set all motors to be relative forward
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -46,6 +48,7 @@ public class lucyAutoTopBlue extends LinearOpMode {
         backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        // Set initial position
         frontLeftDrive.setTargetPosition(0);
         backLeftDrive.setTargetPosition(0);
         backRightDrive.setTargetPosition(0);
@@ -56,13 +59,15 @@ public class lucyAutoTopBlue extends LinearOpMode {
         backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        //AutoLegs activeLeg = AutoLegs.start;
+        // Initialize coordinate arrays
         double [] targetCoordinates = lucyAutoCoordinatesTopBlue.startingPosition;
         double [] previousCoordinates = lucyAutoCoordinatesTopBlue.startingPosition;
         double [] relativeCoordinates = {0,0,0};
 
+        // Repeat once for each leg to move through
         for (int activeLeg = 0; activeLeg < lucyAutoCoordinatesTopBlue.NUMBER_OF_LEGS; activeLeg++) {
 
+            // For each leg set target coordinates
             switch (activeLeg) {
                 case 1:
                     targetCoordinates = lucyAutoCoordinatesTopBlue.legOne;
@@ -77,10 +82,12 @@ public class lucyAutoTopBlue extends LinearOpMode {
 
             }
 
+            // Iterate through the arrays to get each individual value
             for (int i = 0; i < targetCoordinates.length; i++) {
                 relativeCoordinates[i] = targetCoordinates[i] - previousCoordinates[i];
             }
 
+            // Tell the motors to move to desired location
             encoderTranslationalMove(lucyAutoCoordinatesTopBlue.DRIVE_SPEED, relativeCoordinates, 5);
 
 
@@ -95,11 +102,13 @@ public class lucyAutoTopBlue extends LinearOpMode {
                              double [] relativeCoordinates,
                              double timeoutS) {
 
+        // Breakdown array into it's components
         double xTranslation = relativeCoordinates[0];
         double yTranslation = relativeCoordinates[1];
         double heading      = relativeCoordinates[2];
 
 
+        // Create variables to be used for this function
         int newFrontLeftTarget;
         int newFrontRightTarget;
         int newBackLeftTarget;
@@ -109,6 +118,7 @@ public class lucyAutoTopBlue extends LinearOpMode {
         double rotationArc = (heading / 360) * lucyAutoCoordinatesTopBlue.ROBOT_CIRCUMFERENCE;
 
 
+        // Handle combining movement in 3 degrees of movement for lateral, strafe and rotation
         double frontLeftTranslation     = yTranslation + xTranslation + rotationArc;
         double frontRightTranslation    = yTranslation - xTranslation - rotationArc;
         double backLeftTranslation      = yTranslation - xTranslation + rotationArc;
