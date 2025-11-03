@@ -4,6 +4,9 @@ repositories {
 
     //pedro pathing
     maven { url = "https://mymaven.bylazar.com/releases" }
+
+    // State factory
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -22,5 +25,7 @@ dependencies {
     implementation 'com.pedropathing:telemetry:1.0.0'
     implementation 'com.bylazar:fullpanels:1.0.6'
 
+    // State factory
+    implementation 'com.github.StateFactory-Dev:StateFactory:0.3.9'
 }
 
