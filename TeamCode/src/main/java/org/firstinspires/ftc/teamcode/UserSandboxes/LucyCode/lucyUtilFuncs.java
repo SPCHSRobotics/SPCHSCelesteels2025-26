@@ -1,6 +1,5 @@
-package org.firstinspires.ftc.teamcode.userSandboxes.lucyCode;
+package org.firstinspires.ftc.teamcode.UserSandboxes.LucyCode;
 
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 

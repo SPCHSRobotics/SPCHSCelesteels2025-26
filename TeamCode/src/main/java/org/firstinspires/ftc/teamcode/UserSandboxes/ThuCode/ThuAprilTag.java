@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.userSandboxes.ThuCode;
+package org.firstinspires.ftc.teamcode.UserSandboxes.ThuCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;

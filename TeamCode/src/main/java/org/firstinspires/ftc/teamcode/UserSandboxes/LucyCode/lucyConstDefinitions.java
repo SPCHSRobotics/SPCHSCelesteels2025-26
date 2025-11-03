@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.userSandboxes.lucyCode;
+package org.firstinspires.ftc.teamcode.UserSandboxes.LucyCode;
 
 /**
  *      This is where I defined all the constants that all my code uses

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.userSandboxes.sofiaCode;
+package org.firstinspires.ftc.teamcode.UserSandboxes.sofiaCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;

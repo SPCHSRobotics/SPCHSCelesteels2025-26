@@ -1,6 +1,19 @@
 package org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaPedroPathing;
 
 
+import android.app.Activity;
+import android.graphics.Color;
+import android.view.View;
+
+import com.bylazar.configurables.annotations.Configurable;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.NormalizedRGBA;
+import com.qualcomm.robotcore.hardware.SwitchableLight;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 /*
 @Autonomous(name = "color sensing and april tag magic", group = "Linear OpMode")
 @Configurable // Panels

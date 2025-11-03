@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaAuto;
+package org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaAuto;
 
 //approximated coordinates as of 10/30/2025
 public class alinaCoordinates {

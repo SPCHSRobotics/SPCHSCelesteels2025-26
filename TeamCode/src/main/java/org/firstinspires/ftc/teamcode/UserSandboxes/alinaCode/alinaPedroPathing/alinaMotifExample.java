@@ -30,6 +30,7 @@ import com.pedropathing.paths.PathChain;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
@@ -114,7 +115,7 @@ public class alinaMotifExample extends LinearOpMode {
 
         double intakePower = 0;
 
-        // change for LucyAuto/color sensor
+        // change for auto/color sensor
         if (){
             intakePower=200;
             intakeMotor.setPower(intakePower);

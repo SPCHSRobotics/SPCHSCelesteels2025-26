@@ -1,4 +1,5 @@
-package org.firstinspires.ftc.teamcode.userSandboxes.PhuongCode;
+package org.firstinspires.ftc.teamcode.UserSandboxes.ParisCode;
+
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -7,16 +8,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Disabled
-@TeleOp(name="SugoiDesuNya", group="Linear OpMode")
+@TeleOp(name="ParisCutesySandbox", group="Linear OpMode")
+public class ParisMain extends LinearOpMode {
 
-public class PMain extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
-    private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor frontLeftDrive = null;
-    private DcMotor backLeftDrive = null;
-    private DcMotor frontRightDrive = null;
-    private DcMotor backRightDrive = null;
+    private final ElapsedTime runtime = new ElapsedTime();
+    public DcMotor frontLeftDrive = null;
+    public DcMotor backLeftDrive = null;
+    public DcMotor frontRightDrive = null;
+    public DcMotor backRightDrive = null;
 
     @Override
     public void runOpMode() {
@@ -27,6 +28,7 @@ public class PMain extends LinearOpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "leftBackDrive");
         frontRightDrive = hardwareMap.get(DcMotor.class, "rightFrontDrive");
         backRightDrive = hardwareMap.get(DcMotor.class, "rightBackDrive");
+
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -45,16 +47,16 @@ public class PMain extends LinearOpMode {
             double max;
 
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
-            double axial = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
-            double lateral = gamepad1.left_stick_x;
-            double yaw = gamepad1.right_stick_x;
+            double axial   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
+            double lateral =  gamepad1.left_stick_x;
+            double yaw     =  gamepad1.right_stick_x;
 
             // Combine the joystick requests for each axis-motion to determine each wheel's power.
             // Set up a variable for each drive wheel to save the power level for telemetry.
-            double frontLeftPower = axial + lateral + yaw;
+            double frontLeftPower  = axial + lateral + yaw;
             double frontRightPower = axial - lateral - yaw;
-            double backLeftPower = axial - lateral + yaw;
-            double backRightPower = axial + lateral - yaw;
+            double backLeftPower   = axial - lateral + yaw;
+            double backRightPower  = axial + lateral - yaw;
 
             // Normalize the values so no wheel power exceeds 100%
             // This ensures that the robot maintains the desired motion.
@@ -63,12 +65,11 @@ public class PMain extends LinearOpMode {
             max = Math.max(max, Math.abs(backRightPower));
 
             if (max > 1.0) {
-                frontLeftPower /= max;
+                frontLeftPower  /= max;
                 frontRightPower /= max;
-                backLeftPower /= max;
-                backRightPower /= max;
+                backLeftPower   /= max;
+                backRightPower  /= max;
             }
-
 
             // Send calculated power to wheels
             frontLeftDrive.setPower(frontLeftPower);
@@ -84,3 +85,4 @@ public class PMain extends LinearOpMode {
         }
     }
 }
+

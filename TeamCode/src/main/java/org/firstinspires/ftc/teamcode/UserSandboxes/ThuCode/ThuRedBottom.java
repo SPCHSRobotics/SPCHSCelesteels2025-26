@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.userSandboxes.ThuCode;
+package org.firstinspires.ftc.teamcode.UserSandboxes.ThuCode;
 /*PSEUDOCODE
 DEFINE private  red start position (96,0)
 DEFINE private red score position (84,0)

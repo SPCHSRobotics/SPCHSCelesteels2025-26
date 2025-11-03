@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaPedroPathing;
+package org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaPedroPathing;
 
 
-import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaPedroPathing.alinaTuning.changes;
-import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaPedroPathing.alinaTuning.drawOnlyCurrent;
-import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaPedroPathing.alinaTuning.draw;
-import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaPedroPathing.alinaTuning.follower;
-import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaPedroPathing.alinaTuning.stopRobot;
-import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaPedroPathing.alinaTuning.telemetryM;
+import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaPedroPathing.alinaTuning.changes;
+import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaPedroPathing.alinaTuning.drawOnlyCurrent;
+import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaPedroPathing.alinaTuning.draw;
+import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaPedroPathing.alinaTuning.follower;
+import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaPedroPathing.alinaTuning.stopRobot;
+import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaPedroPathing.alinaTuning.telemetryM;
 
 import com.bylazar.configurables.PanelsConfigurables;
 import com.bylazar.configurables.annotations.Configurable;
