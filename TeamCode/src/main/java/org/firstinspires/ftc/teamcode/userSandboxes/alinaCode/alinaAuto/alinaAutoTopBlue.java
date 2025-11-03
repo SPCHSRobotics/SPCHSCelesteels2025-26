@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-//top blue LucyAuto NO PEDRO PATHING
+//top blue auto NO PEDRO PATHING
 @Autonomous(name = "Alina Top Blue auto", group = "Linear OpMode")
 public class alinaAutoTopBlue extends LinearOpMode {
 
