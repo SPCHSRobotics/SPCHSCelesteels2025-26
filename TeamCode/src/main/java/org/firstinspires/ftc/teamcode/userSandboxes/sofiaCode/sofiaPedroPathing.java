@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.UserSandboxes.sofiaCode;
+package org.firstinspires.ftc.teamcode.userSandboxes.sofiaCode;
 
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
@@ -22,16 +22,17 @@ public abstract class sofiaPedroPathing extends LinearOpMode {
     private Follower follower;
     private Timer patherTimer, actionTimer, opmodeTimer;
     private int pathState;
+}
+/*
+private final Pose startPose = new Pose(56, 8, Math.toRadians(90));
+private final Pose scorePose = new Pose(72.5, 22, Math.toRadians(110));
+private final Pose apriltagePose = new Pose();
+private final Pose intakePPGPose1 = new Pose();
+teamDrive teamDrive = new teamDrive(hardwareMap);
 
- /*   private final Pose startPose = new Pose(56, 8, Math.toRadians(90));
-    private final Pose scorePose = new Pose(72.5, 22, Math.toRadians(110));
-    private final Pose apriltagePose = new Pose();
-    private final Pose intakePPGPose1 = new Pose();
-    teamDrive teamDrive = new teamDrive(hardwareMap);/*follower = new Follower();
+follower = new Follower();
 
-
-
-    private final Path scorePreLoad;
+private final Path scorePreLoad;
     private final ElapsedTime pathTimer = new ElapsedTime();
 
     @Override
@@ -50,13 +51,13 @@ public abstract class sofiaPedroPathing extends LinearOpMode {
         autonomousPathUpdate();
         follower.update();
 
-    // -----------------------------
+
     public void buildPaths() {
         scorePreLoad = new Path(new BezierLine(startPose, scorePose));
         scorePreLoad.setLinearHeadingInterpolation(startPose.getHeading(), scorePose.getHeading());
     }
 
-    // -----------------------------
+
     public void autonomousPathUpdate() {
         switch (pathState) {
             case 0:
@@ -66,7 +67,7 @@ public abstract class sofiaPedroPathing extends LinearOpMode {
         }
     }
 
-    // -----------------------------
+
     public void setPathState(int pState) {
         pathState = pState;
         pathTimer.reset();
@@ -233,4 +234,6 @@ public void autonomousPathUpdate() {
                 follower.followPath(scorePPG1, true);
                 pathStarted = true;
             }
-            if (pathStarted && !follower.isBusy()) {}
+            if (pathStarted && !follower.isBusy()) }
+
+  */
