@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcontroller.external.samples.LucyHardwareMap;
 import org.firstinspires.ftc.teamcode.UserSandboxes.LucyCode.LucyAuto.LucyAutoUtil;
 
 
@@ -20,35 +21,13 @@ public class LucyAutoTopBlue extends LinearOpMode {
 
     private final ElapsedTime runtime = new ElapsedTime();
 
+    LucyHardwareMap hardwareUtil = new LucyHardwareMap();
+
+
     @Override
     public void runOpMode() throws InterruptedException {
-        // Get motor hardware mapping
-        frontLeftDrive = hardwareMap.get(DcMotor.class, "leftFrontDrive");
-        frontRightDrive = hardwareMap.get(DcMotor.class, "rightFrontDrive");
-        backRightDrive = hardwareMap.get(DcMotor.class, "rightBackDrive");
-        backLeftDrive = hardwareMap.get(DcMotor.class, "leftBackDrive");
 
-        // Set all motors to be relative forward
-        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
-        backRightDrive.setDirection(DcMotor.Direction.FORWARD);
-
-        frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        // Set initial position
-        frontLeftDrive.setTargetPosition(0);
-        backLeftDrive.setTargetPosition(0);
-        backRightDrive.setTargetPosition(0);
-        frontRightDrive.setTargetPosition(0);
-
-        frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        hardwareUtil.initAuto();
 
         // Initialize coordinate arrays
         double [] targetCoordinates = LucyAutoCoordinatesTopBlue.startingPosition;
