@@ -14,9 +14,9 @@ public class teamMain extends LinearOpMode {
     public void runOpMode() {
         //initialize hardware
         teamDrive teamDrive = new teamDrive(hardwareMap);
-        teamIntake teamIntake = new teamIntake(hardwareMap);
+        //teamIntake teamIntake = new teamIntake(hardwareMap);
         teamOuttake teamOuttake = new teamOuttake(hardwareMap);
-        temporaryServo temporaryServo = new temporaryServo(hardwareMap);
+
 
         //Wait for the team to start (driver presses START)
         telemetry.addData("Status","Initialized");
@@ -29,9 +29,8 @@ public class teamMain extends LinearOpMode {
         while (opModeIsActive()) {
             //call all the functions
             teamDrive.teamDriveFunction(gamepad1,telemetry);
-            teamIntake.teamIntakeFunction(gamepad2,telemetry);
+            //teamIntake.teamIntakeFunction(gamepad2,telemetry);
             teamOuttake.teamOuttakeFunction(gamepad1,telemetry);
-            temporaryServo.temporaryServoFunction(gamepad2,telemetry);
 
            //Show the elapsed game time, wheel power, intake power...(more stuff later:3)
             telemetry.addData("Status","Run Time" + runtime);
