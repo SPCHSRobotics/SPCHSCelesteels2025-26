@@ -1,27 +1,38 @@
 package org.firstinspires.ftc.teamcode.userSandboxes.sofiaCode;
 
-import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.geometry.Pose;
-import com.pedropathing.paths.PathChain;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.pedropathing.paths.Path;
+import com.pedropathing.paths.PathChain;
 import com.pedropathing.util.Timer;
-import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import  com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.TeamCode.teamDrive;
 
 import javax.xml.xpath.XPath;
 
 @Autonomous(name = "sofiaPPBottomBlue", group = "Linear OpMode")
-@Configurable
 public abstract class sofiaPedroPathing extends LinearOpMode {
 
     private Follower follower;
     private Timer patherTimer, actionTimer, opmodeTimer;
     private int pathState;
+    private final Pose startPose = new Pose(56,8,Math.toRadians(90));
+    private final Pose scorePose = new Pose(72.5,22,Math.toRadians(110))
+    private final Pose apriltagePose = new Pose(72,95.6,Math.toRadians(90))
+    private Path scorePreLoad;
+    private PathChain apriltagPath;
+    public void buildPaths() {
+        scorePreLoad = new Path(new BezierLine(startPose, scorePose));
+        scorePreLoad.setLinearHeadingInterpolation(startPose.getHeading(), scorePose.getHeading());
+
+        apriltagPath = follower.pathBuilder()
+                .addPath(new BezierLine(scorePose, apriltagePose))
+                .setLinearHeadingInterpolation(scorePose.getHeading(), apriltagePose.getHeading())
+                .build();
+    }
 }
 /*
 private final Pose startPose = new Pose(56, 8, Math.toRadians(90));
