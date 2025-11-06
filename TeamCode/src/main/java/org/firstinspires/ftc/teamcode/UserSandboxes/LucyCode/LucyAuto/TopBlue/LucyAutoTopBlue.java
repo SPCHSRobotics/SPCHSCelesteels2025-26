@@ -1,15 +1,15 @@
-package org.firstinspires.ftc.teamcode.UserSandboxes.LucyCode.LucyAuto.TopBlue;
+package org.firstinspires.ftc.teamcode.userSandboxes.lucyCode.LucyAuto.TopBlue;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.LucyHardwareMap;
-import org.firstinspires.ftc.teamcode.UserSandboxes.LucyCode.LucyAuto.LucyAutoUtil;
-
-
+/*
+@Disabled
 @Autonomous(name="Robot: Auto Drive By Encoder", group="Robot")
 public class LucyAutoTopBlue extends LinearOpMode {
 
@@ -76,3 +76,5 @@ public class LucyAutoTopBlue extends LinearOpMode {
 
     }
 }
+
+ */

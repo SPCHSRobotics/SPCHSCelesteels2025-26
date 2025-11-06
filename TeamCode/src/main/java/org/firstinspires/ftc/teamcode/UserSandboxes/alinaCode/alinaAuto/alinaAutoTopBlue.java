@@ -1,13 +1,12 @@
-package org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaAuto;
-import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaAuto.alinaCoordinates.COUNTS_PER_INCH;
-import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaAuto.alinaCoordinates.DRIVE_SPEED;
-import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaAuto.alinaCoordinates.ROBOT_CIRCUMFERENCE;
-import static org.firstinspires.ftc.teamcode.UserSandboxes.alinaCode.alinaAuto.alinaCoordinates.TURN_SPEED;
+package org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaAuto;
+import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaAuto.alinaCoordinates.COUNTS_PER_INCH;
+import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaAuto.alinaCoordinates.DRIVE_SPEED;
+import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaAuto.alinaCoordinates.ROBOT_CIRCUMFERENCE;
+import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaAuto.alinaCoordinates.TURN_SPEED;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 //top blue auto NO PEDRO PATHING
@@ -21,8 +20,7 @@ public class alinaAutoTopBlue extends LinearOpMode {
 
     public DcMotor outtakeMotorLeft;
     public DcMotor outtakeMotorRight;
-
-    public Servo servoArm;
+    
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -36,12 +34,10 @@ public class alinaAutoTopBlue extends LinearOpMode {
         //call outtake motor
         outtakeMotorLeft = hardwareMap.get(DcMotor.class, "LeftOuttake");
         outtakeMotorRight = hardwareMap.get(DcMotor.class, "RightOuttake");
-        //call servo arm
-        servoArm = hardwareMap.get(Servo.class, "servoArm");
         //set drivetrain directions and reset encoder
-        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
         backRightDrive.setDirection(DcMotor.Direction.FORWARD);
 
         frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -56,8 +52,6 @@ public class alinaAutoTopBlue extends LinearOpMode {
 
         outtakeMotorLeft.setDirection(DcMotor.Direction.FORWARD);
         outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
-
-        servoArm.setPosition(0.5);
 
         // Send telemetry message to indicate successful Encoder reset
         telemetry.addData("Starting at", "%7d :%7d",
@@ -89,10 +83,10 @@ public class alinaAutoTopBlue extends LinearOpMode {
             double rotationArc = (heading/360) * ROBOT_CIRCUMFERENCE;
 
 
-            double frontLeftTranslation     = yTranslation + xTranslation + rotationArc;
-            double frontRightTranslation    = yTranslation - xTranslation - rotationArc;
-            double backLeftTranslation      = yTranslation - xTranslation + rotationArc;
-            double backRightTranslation     = yTranslation + xTranslation - rotationArc;
+            double frontLeftTranslation     = yTranslation - xTranslation + rotationArc;
+            double frontRightTranslation    = yTranslation + xTranslation - rotationArc;
+            double backLeftTranslation      = yTranslation + xTranslation + rotationArc;
+            double backRightTranslation     = yTranslation - xTranslation - rotationArc;
 
             // Ensure that the OpMode is still active
             if (opModeIsActive()) {

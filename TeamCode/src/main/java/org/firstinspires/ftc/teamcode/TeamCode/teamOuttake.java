@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.TeamCode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -27,7 +26,6 @@ public class teamOuttake {
 
     public void teamOuttakeFunction(Gamepad gamepad1, Telemetry telemetry){
 
-        // TODO: Move set power to outside if statements with only changing the outtake power in the if statements
         double outtakePower = 0;
         //when x is held, full power (6000 rpm), when b is held, half power (3000?), when both released, no power
         if (gamepad1.xWasPressed()){
@@ -40,13 +38,13 @@ public class teamOuttake {
             outtakeMotorLeft.setPower(outtakePower);
             outtakeMotorRight.setPower(outtakePower);
 
-
         } else if (gamepad1.bWasReleased()|| gamepad1.xWasReleased()){
             outtakePower=0;
             outtakeMotorLeft.setPower(outtakePower);
             outtakeMotorRight.setPower(outtakePower);
 
         }
+
         telemetry.addData("outtake power:",outtakePower);
 
     }
