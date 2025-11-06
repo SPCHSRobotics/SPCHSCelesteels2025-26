@@ -14,14 +14,14 @@ import org.firstinspires.ftc.teamcode.TeamCode.teamDrive;
 import javax.xml.xpath.XPath;
 
 @Autonomous(name = "sofiaPPBottomBlue", group = "Linear OpMode")
-public abstract class sofiaPedroPathing extends LinearOpMode {
+public abstract class sofiaPedroPathing extends OpMode {
 
     private Follower follower;
-    private Timer patherTimer, actionTimer, opmodeTimer;
+    private Timer pathTimer, actionTimer, opmodeTimer;
     private int pathState;
     private final Pose startPose = new Pose(56,8,Math.toRadians(90));
-    private final Pose scorePose = new Pose(72.5,22,Math.toRadians(110))
-    private final Pose apriltagePose = new Pose(72,95.6,Math.toRadians(90))
+    private final Pose scorePose = new Pose(72.5,22,Math.toRadians(110));
+    private final Pose apriltagePose = new Pose(72,95.6,Math.toRadians(90));
     private Path scorePreLoad;
     private PathChain apriltagPath;
     public void buildPaths() {
@@ -33,6 +33,53 @@ public abstract class sofiaPedroPathing extends LinearOpMode {
                 .setLinearHeadingInterpolation(scorePose.getHeading(), apriltagePose.getHeading())
                 .build();
     }
+    public void autonomousPathUpdate() {
+        switch (pathState) {
+            case 0:
+                follower.followPath(scorePreLoad);
+                setPathState(1);
+                break;
+            case 1:
+                if(!follower.isBusy()) {
+                    follower.followPath(apriltagPath,true);
+                    setPathState(2);
+                }
+                break;
+        }
+    }
+    public void setPathState(int pState) {
+        pathState = pState;
+        pathTimer.resetTimer();
+    }
+    @Override
+    public void loop() {
+        follower.update();
+        autonomousPathUpdate();
+        telemetry.addData("path state", pathState);
+        telemetry.addData("x", follower.getPose().getX());
+        telemetry.addData("y", follower.getPose().getY());
+        telemetry.addData("heading", follower.getPose().getHeading());
+        telemetry.update();
+    }
+    @Override
+    public void init() {
+        pathTimer = new Timer();
+        opmodeTimer = new Timer();
+        opmodeTimer.resetTimer();
+
+        buildPaths();
+        follower.setStartingPose(startPose);
+    }
+    @Override
+    public void init_loop() {}
+
+    @Override
+    public void start() {
+        opmodeTimer.resetTimer();
+        setPathState(0);
+    }
+    @Override
+    public void stop() {}
 }
 /*
 private final Pose startPose = new Pose(56, 8, Math.toRadians(90));
