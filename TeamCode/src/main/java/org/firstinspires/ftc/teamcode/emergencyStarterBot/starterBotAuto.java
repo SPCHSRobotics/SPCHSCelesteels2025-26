@@ -199,12 +199,13 @@ public class starterBotAuto extends LinearOpMode {
     /*
      * This code runs REPEATEDLY after the driver hits INIT, but before they hit START.
      */
-
+/*
      public void init() {
         /*
          * We also set the servo power to 0 here to make sure that the servo controller is booted
          * up and ready to go.
          */
+    /*
         rightFeeder.setPower(0);
         leftFeeder.setPower(0);
 
@@ -212,6 +213,7 @@ public class starterBotAuto extends LinearOpMode {
         /*
          * Here we allow the driver to select which alliance we are on using the gamepad.
          */
+    /*
         if (gamepad1.b) {
             alliance = Alliance.RED;
         } else if (gamepad1.x) {
@@ -226,6 +228,7 @@ public class starterBotAuto extends LinearOpMode {
     /*
      * This code runs REPEATEDLY after the driver hits START but before they hit STOP.
      */
+    /*
     public void loop() {
         /*
          * TECH TIP: Switch Statements
@@ -236,6 +239,7 @@ public class starterBotAuto extends LinearOpMode {
          * of the members of the enum for a match, since if we find the "break" line in one case,
          * we know our enum isn't reflecting a different state.
          */
+    /*
         switch (autonomousState){
             /*
              * Since the first state of our auto is LAUNCH, this is the first "case" we encounter.
@@ -245,6 +249,7 @@ public class starterBotAuto extends LinearOpMode {
              * "false" condition means that we are continuing to call the function every loop,
              * allowing it to cycle through and continue the process of launching the first ball.
              */
+    /*
             case LAUNCH:
                 launch(true);
                 autonomousState = AutonomousState.WAIT_FOR_LAUNCH;
@@ -262,6 +267,7 @@ public class starterBotAuto extends LinearOpMode {
                  * state on our state machine. Otherwise, we reset the encoders on our drive motors
                  * and move onto the next state.
                  */
+    /*
                 if(launch(false)) {
                     shotsToFire -= 1;
                     if(shotsToFire > 0) {
@@ -281,6 +287,7 @@ public class starterBotAuto extends LinearOpMode {
                  * the robot has been within a tolerance of the target position for "holdSeconds."
                  * Once the function returns "true" we reset the encoders again and move on.
                  */
+    /*
                 if(drive(DRIVE_SPEED, -4, DistanceUnit.INCH, 1)){
                     leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                     rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -308,7 +315,7 @@ public class starterBotAuto extends LinearOpMode {
                 }
                 break;
         }
-
+*/
         /*
          * Here is our telemetry that keeps us informed of what is going on in the robot. Since this
          * part of the code exists outside of our switch statement, it will run once every loop.
@@ -317,6 +324,7 @@ public class starterBotAuto extends LinearOpMode {
          * after the last "case" that runs every loop. This means we can avoid a lot of
          * "copy-and-paste" that non-state machine autonomous routines fall into.
          */
+        /*
         telemetry.addData("AutoState", autonomousState);
         telemetry.addData("LauncherState", launchState);
         telemetry.addData("Motor Current Positions", "left (%d), right (%d)",
@@ -325,10 +333,12 @@ public class starterBotAuto extends LinearOpMode {
                 leftDrive.getTargetPosition(), rightDrive.getTargetPosition());
         telemetry.update();
     }
-
+*/
     /*
      * This code runs ONCE after the driver hits STOP.
      */
+
+    /*
     public void stop() {
     }
 
@@ -340,6 +350,7 @@ public class starterBotAuto extends LinearOpMode {
      *                      state machine and launch the ball.
      * @return "true" for one cycle after a ball has been successfully launched, "false" otherwise.
      */
+    /*
     boolean launch(boolean shotRequested){
         switch (launchState) {
             case IDLE:
@@ -379,6 +390,7 @@ public class starterBotAuto extends LinearOpMode {
      * @return "true" if the motors are within tolerance of the target position for more than
      * holdSeconds. "false" otherwise.
      */
+    /*
     boolean drive(double speed, double distance, DistanceUnit distanceUnit, double holdSeconds) {
         final double TOLERANCE_MM = 10;
         /*
@@ -390,6 +402,7 @@ public class starterBotAuto extends LinearOpMode {
          * unit we request from distanceUnit. But if we want to use inches in our function, we could
          * use distanceUnit.toInches() instead!
          */
+    /*
         double targetPosition = (distanceUnit.toMm(distance) * TICKS_PER_MM);
 
         leftDrive.setTargetPosition((int) targetPosition);
@@ -408,6 +421,7 @@ public class starterBotAuto extends LinearOpMode {
          * the driveTimer. Only after we reach the target can the timer count higher than our
          * holdSeconds variable.
          */
+    /*
         if(Math.abs(targetPosition - leftDrive.getCurrentPosition()) > (TOLERANCE_MM * TICKS_PER_MM)){
             driveTimer.reset();
         }
@@ -423,6 +437,7 @@ public class starterBotAuto extends LinearOpMode {
      * @return True if the motors are within tolerance of the target position for more than
      *         holdSeconds. False otherwise.
      */
+    /*
     boolean rotate(double speed, double angle, AngleUnit angleUnit, double holdSeconds){
         final double TOLERANCE_MM = 10;
 
@@ -435,12 +450,14 @@ public class starterBotAuto extends LinearOpMode {
          * need to travel, we just need to multiply the requested angle in radians by the radius
          * of our turning circle.
          */
+    /*
         double targetMm = angleUnit.toRadians(angle)*(TRACK_WIDTH_MM/2);
 
         /*
          * We need to set the left motor to the inverse of the target so that we rotate instead
          * of driving straight.
          */
+    /*
         double leftTargetPosition = -(targetMm*TICKS_PER_MM);
         double rightTargetPosition = targetMm*TICKS_PER_MM;
 
@@ -459,5 +476,5 @@ public class starterBotAuto extends LinearOpMode {
 
         return (driveTimer.seconds() > holdSeconds);
     }
-
+*/
 }
