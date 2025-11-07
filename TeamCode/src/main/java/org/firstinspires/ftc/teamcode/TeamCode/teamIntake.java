@@ -16,7 +16,7 @@ public class teamIntake {
         greaterIntakeMotor = hardwareMap.get(DcMotor.class,"greaterIntakeMotor");
 
         //set intake motor reverse
-        lesserIntakeMotor.setDirection(DcMotor.Direction.FORWARD);
+        lesserIntakeMotor.setDirection(DcMotor.Direction.REVERSE);
         greaterIntakeMotor.setDirection(DcMotor.Direction.FORWARD);
     }
 

@@ -22,7 +22,7 @@ public class teamDrive {
         backRightDrive = hardwareMap.get(DcMotor.class, "rightBackDrive");
         backLeftDrive = hardwareMap.get(DcMotor.class, "leftBackDrive");
 
-        frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
         backRightDrive.setDirection(DcMotor.Direction.FORWARD);
