@@ -24,12 +24,16 @@ public class teamIntake {
 
         double intakePower = 0;
         //holding down a turns on intake
-        if (gamepad2.aWasPressed()){
-            intakePower=1;
+        if (gamepad2.aWasPressed()) {
+            intakePower = 1;
+            lesserIntakeMotor.setPower(intakePower);
+            greaterIntakeMotor.setPower(intakePower);
+        } else if (gamepad2.yWasPressed()){
+            intakePower = -1;
             lesserIntakeMotor.setPower(intakePower);
             greaterIntakeMotor.setPower(intakePower);
 
-        } else if (gamepad2.aWasReleased()) {
+        } else if (gamepad2.aWasReleased() || gamepad2.yWasReleased()) {
             intakePower=0;
             lesserIntakeMotor.setPower(intakePower);
             greaterIntakeMotor.setPower(intakePower);

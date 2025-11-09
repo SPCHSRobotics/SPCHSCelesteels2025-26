@@ -5,11 +5,13 @@ import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaAuto.a
 import static org.firstinspires.ftc.teamcode.userSandboxes.alinaCode.alinaAuto.alinaCoordinates.TURN_SPEED;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 //top blue auto NO PEDRO PATHING
+@Disabled
 @Autonomous(name = "Alina Top Blue auto", group = "Linear OpMode")
 public class alinaAutoTopBlue extends LinearOpMode {
 

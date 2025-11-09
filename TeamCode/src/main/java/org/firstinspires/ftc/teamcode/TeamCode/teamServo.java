@@ -15,15 +15,15 @@ public class teamServo {
 
         servoArm.setDirection(Servo.Direction.REVERSE);
     }
-    public void teamServoFunction (Gamepad gamepad2, Telemetry telemetry){
+    public void teamServoFunction (Gamepad gamepad1, Telemetry telemetry){
 
         double servoPosition = 0;
         //flick ts
-        if (gamepad2.bWasPressed()){
+        if (gamepad1.bWasPressed()){
             servoPosition = 0.5;
             servoArm.setPosition(servoPosition);
             //go back to neutral
-        } else if (gamepad2.bWasReleased()){
+        } else if (gamepad1.bWasReleased()){
             servoPosition = 0;
             servoArm.setPosition(servoPosition);
         }
