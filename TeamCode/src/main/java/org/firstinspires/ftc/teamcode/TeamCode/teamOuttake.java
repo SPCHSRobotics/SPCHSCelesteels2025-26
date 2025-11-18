@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeamCode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -18,27 +19,27 @@ public class teamOuttake {
 
         //set intake motor reverse
         outtakeMotorLeft.setDirection(DcMotor.Direction.FORWARD);
-        outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD    );
+        outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
 
         outtakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         outtakeMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public void teamOuttakeFunction(Gamepad gamepad1, Telemetry telemetry){
+    public void teamOuttakeFunction(Gamepad gamepad2, Telemetry telemetry){
 
         double outtakePower = 0;
-        //when x is held, full power (6000 rpm), when b is held, half power (3000?), when both released, no power
-        if (gamepad1.xWasPressed()){
-            outtakePower=1;
+        //when x is held, full power (6000 rpm), when b is held, 70% power (3000?), when both released, no power
+        if (gamepad2.xWasPressed()){
+            outtakePower=0.6;
             outtakeMotorLeft.setPower(outtakePower);
             outtakeMotorRight.setPower(outtakePower);
 
-        } else if (gamepad1.bWasPressed()) {
-            outtakePower=0.5;
+        } else if (gamepad2.bWasPressed()) {
+            outtakePower=0.4;
             outtakeMotorLeft.setPower(outtakePower);
             outtakeMotorRight.setPower(outtakePower);
 
-        } else if (gamepad1.bWasReleased()|| gamepad1.xWasReleased()){
+        } else if (gamepad2.bWasReleased()|| gamepad2.xWasReleased()){
             outtakePower=0;
             outtakeMotorLeft.setPower(outtakePower);
             outtakeMotorRight.setPower(outtakePower);
