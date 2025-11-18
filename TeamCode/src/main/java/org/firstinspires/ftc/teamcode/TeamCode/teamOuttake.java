@@ -1,52 +1,42 @@
 package org.firstinspires.ftc.teamcode.TeamCode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class teamOuttake {
-    public DcMotor outtakeMotorLeft;
-    public DcMotor outtakeMotorRight;
+    public DcMotor outtakeMotor;
+
 
     public teamOuttake(HardwareMap hardwareMap) {
         //call intake motor
-        outtakeMotorLeft = hardwareMap.get(DcMotor.class,"LeftOuttake");
-        outtakeMotorRight = hardwareMap.get(DcMotor.class,"RightOuttake");
+        outtakeMotor = hardwareMap.get(DcMotor.class,"Outtake");
 
 
         //set intake motor reverse
-        outtakeMotorLeft.setDirection(DcMotor.Direction.FORWARD);
-        outtakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
+        outtakeMotor.setDirection(DcMotor.Direction.FORWARD);
 
-        outtakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        outtakeMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        outtakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public void teamOuttakeFunction(Gamepad gamepad2, Telemetry telemetry){
+    public void teamOuttakeFunction(Gamepad gamepad1, Telemetry telemetry) {
 
-        double outtakePower = 0;
+        double shootingPower = 0.6;
+        boolean shooting = false;
+        //0.6 is power okay
         //when x is held, full power (6000 rpm), when b is held, 70% power (3000?), when both released, no power
-        if (gamepad2.xWasPressed()){
-            outtakePower=0.6;
-            outtakeMotorLeft.setPower(outtakePower);
-            outtakeMotorRight.setPower(outtakePower);
 
-        } else if (gamepad2.bWasPressed()) {
-            outtakePower=0.4;
-            outtakeMotorLeft.setPower(outtakePower);
-            outtakeMotorRight.setPower(outtakePower);
-
-        } else if (gamepad2.bWasReleased()|| gamepad2.xWasReleased()){
-            outtakePower=0;
-            outtakeMotorLeft.setPower(outtakePower);
-            outtakeMotorRight.setPower(outtakePower);
-
+        if (gamepad1.xWasPressed()) {
+            shooting = !shooting;
         }
 
-        telemetry.addData("outtake power:",outtakePower);
+        if (shooting) {
+            outtakeMotor.setPower(shootingPower);
+        } else outtakeMotor.setPower(0);
+
+        telemetry.addData("outtake power:",(shooting) ? "ON" : "OFF");
 
     }
 }
