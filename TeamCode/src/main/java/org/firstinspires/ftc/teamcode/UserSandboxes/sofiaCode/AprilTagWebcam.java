@@ -73,7 +73,7 @@ public class AprilTagWebcam extends OpMode {
 
     @Override
     public void init() {
-        
+
     }
 
     public void loop() {
