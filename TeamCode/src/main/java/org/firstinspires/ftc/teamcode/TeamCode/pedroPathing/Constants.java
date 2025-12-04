@@ -14,19 +14,20 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
 public class Constants {
+
     public static FollowerConstants followerConstants = new FollowerConstants()
             .mass(6.8)
-            .forwardZeroPowerAcceleration()
-            .lateralZeroPowerAcceleration()
-            .translationalPIDFCoefficients()
-            .translationalPIDFSwitch()
-            .secondaryTranslationalPIDFCoefficients(new PIDFCoefficients())
-            .headingPIDFCoefficients(new PIDFCoefficients())
-            .secondaryHeadingPIDFCoefficients(new PIDFCoefficients())
-            .drivePIDFCoefficients(new FilteredPIDFCoefficients())
-            .secondaryDrivePIDFCoefficients(new FilteredPIDFCoefficients())
-            .drivePIDFSwitch()
-            .centripetalScaling();
+            .forwardZeroPowerAcceleration(1)
+            .lateralZeroPowerAcceleration(1)
+            .translationalPIDFCoefficients(new PIDFCoefficients(.1, .1, .1,.1))
+            .translationalPIDFSwitch(1)
+            .secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(.1, .1, .1,.1))
+            .headingPIDFCoefficients(new PIDFCoefficients(.1, .1, .1,.1))
+            .secondaryHeadingPIDFCoefficients(new PIDFCoefficients(.1, .1, .1,.1))
+            .drivePIDFCoefficients(new FilteredPIDFCoefficients(.1, .1, .1,.1,.1))
+            .secondaryDrivePIDFCoefficients(new FilteredPIDFCoefficients(.1, .1, .1,.1,.1))
+            .drivePIDFSwitch(.1)
+            .centripetalScaling(2);
     public static MecanumConstants driveConstants = new MecanumConstants()
             .leftFrontMotorName("leftFrontDrive")
             .leftRearMotorName("leftBackDrive")
@@ -36,11 +37,11 @@ public class Constants {
             .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
             .rightFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
             .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD)
-            .xVelocity()
-            .yVelocity();
+            .xVelocity(.1)
+            .yVelocity(.1);
     public static PinpointConstants localizerConstants = new PinpointConstants()
-            .forwardPodY()
-            .strafePodX()
+            .forwardPodY(.1)
+            .strafePodX(.1)
             .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
             .strafeEncoderDirection(GoBildaPinpointDriver.EncoderDirection.REVERSED);
 

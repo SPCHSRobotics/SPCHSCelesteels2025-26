@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.userSandboxes.sofiaCode;
 import android.hardware.HardwareBuffer;
 import android.util.Size;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -17,7 +18,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import java.util.ArrayList;
 import java.util.List;
 @TeleOp(name = "sofia sux")
-public class AprilTagWebcam {
+public class AprilTagWebcam extends OpMode {
     private AprilTagProcessor aprilTagProcessor;
     private VisionPortal visionPortal;
     private List<AprilTagDetection> detectedTags = new ArrayList<>();
@@ -40,6 +41,7 @@ public class AprilTagWebcam {
 
         visionPortal = builder.build();
     }
+
 
     public void update() {
         detectedTags = aprilTagProcessor.getDetections();
@@ -67,6 +69,15 @@ public class AprilTagWebcam {
             }
         }
         return null;
+    }
+
+    @Override
+    public void init() {
+        
+    }
+
+    public void loop() {
+
     }
     public void stop() {
         if (visionPortal != null) {
