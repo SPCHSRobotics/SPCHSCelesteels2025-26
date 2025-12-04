@@ -2,18 +2,17 @@ package org.firstinspires.ftc.teamcode.userSandboxes.sofiaCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 
-@Autonomous
-public class AprilTagWebcamID extends LinearOpMode {
+@TeleOp(name = "Sofia tests webcam", group = "Linear OpMode")
+public abstract class AprilTagWebcamID extends LinearOpMode {
     AprilTagWebcam aprilTagWebcam = new AprilTagWebcam();
-
     @Override
     public void init () {
         aprilTagWebcam.init(hardwareMap, telemetry);
     }
-
     @Override
     public void loop() {
          aprilTagWebcam.update();
