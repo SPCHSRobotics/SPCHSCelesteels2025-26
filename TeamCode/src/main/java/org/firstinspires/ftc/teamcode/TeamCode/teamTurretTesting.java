@@ -31,7 +31,7 @@ public class teamTurretTesting extends LinearOpMode {
     public DcMotor spinningMotor;
 
     public teamTurretTesting(HardwareMap hardwareMap) {
-        spinningMotor = hardwareMap.get(DcMotor.class, "spinning motor");
+        spinningMotor = hardwareMap.get(DcMotor.class, "spinningMotor");
         spinningMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
     public void teamTurretTestingFunction(Gamepad gamepad1, Telemetry telemetry){
