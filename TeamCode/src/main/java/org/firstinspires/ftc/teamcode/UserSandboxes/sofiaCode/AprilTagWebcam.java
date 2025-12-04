@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.userSandboxes.sofiaCode;
 import android.hardware.HardwareBuffer;
 import android.util.Size;
 
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -15,7 +16,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@TeleOp(name = "sofia sux")
 public class AprilTagWebcam {
     private AprilTagProcessor aprilTagProcessor;
     private VisionPortal visionPortal;
