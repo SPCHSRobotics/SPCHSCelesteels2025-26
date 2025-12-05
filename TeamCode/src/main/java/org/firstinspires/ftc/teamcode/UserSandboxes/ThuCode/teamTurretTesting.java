@@ -1,11 +1,10 @@
-package org.firstinspires.ftc.teamcode.TeamCode;
+package org.firstinspires.ftc.teamcode.userSandboxes.ThuCode;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -16,10 +15,9 @@ public class teamTurretTesting extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        {
-            spinningMotor = hardwareMap.get(DcMotor.class, "spinning motor");
-            spinningMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        }
+        spinningMotor = hardwareMap.get(DcMotor.class, "spinning motor");
+        spinningMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        spinningMotor.setDirection(DcMotor.Direction.REVERSE);
 
 
         // Wait for the game to start (driver presses START)
@@ -37,12 +35,12 @@ public class teamTurretTesting extends LinearOpMode {
 
     }
 
-    public void teamTurretTestingFunction(Gamepad gamepad1, Telemetry telemetry){
+    public void teamTurretTestingFunction(Gamepad gamepad2, Telemetry telemetry){
         double max;
 
-        double axial   = -gamepad1.left_stick_y;
-        double lateral =  -gamepad1.left_stick_x;
-        double yaw     =  gamepad1.right_stick_x;
+        double axial   = -gamepad2.left_stick_y;
+        double lateral =  -gamepad2.left_stick_x;
+        double yaw     =  gamepad2.right_stick_x;
 
         double spinningMotorPower = axial - lateral + yaw;
 
