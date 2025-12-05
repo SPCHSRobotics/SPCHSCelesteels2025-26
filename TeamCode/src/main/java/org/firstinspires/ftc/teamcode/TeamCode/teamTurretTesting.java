@@ -12,9 +12,16 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @TeleOp(name = "Thu tests Spinning Turret OpMode", group = "Linear OpMode")
 public class teamTurretTesting extends LinearOpMode {
-
+    public DcMotor spinningMotor;
     @Override
     public void runOpMode() {
+
+        {
+            spinningMotor = hardwareMap.get(DcMotor.class, "spinning motor");
+            spinningMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        }
+
+
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -23,17 +30,13 @@ public class teamTurretTesting extends LinearOpMode {
 
         // run until driver presses STOP
         while (opModeIsActive()) {
+            teamTurretTestingFunction(gamepad1, telemetry);
             telemetry.update();
         
         }
 
     }
-    public DcMotor spinningMotor;
 
-    public teamTurretTesting(HardwareMap hardwareMap) {
-        spinningMotor = hardwareMap.get(DcMotor.class, "spinning motor");
-        spinningMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-    }
     public void teamTurretTestingFunction(Gamepad gamepad1, Telemetry telemetry){
         double max;
 
