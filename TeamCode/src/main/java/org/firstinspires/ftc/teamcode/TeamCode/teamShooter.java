@@ -22,7 +22,7 @@ public class teamShooter {
         shooterMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public static void teamShooterFunction(Gamepad gamepad2, Telemetry telemetry) {
+    public void teamShooterFunction(Gamepad gamepad2, Telemetry telemetry) {
 
         double shootingPower = 0.6;
 

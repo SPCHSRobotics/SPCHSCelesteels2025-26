@@ -10,7 +10,7 @@ public class teamHoodServo {
 
     public Servo hoodServo;
 
-    public void teamHoodServo (HardwareMap hardwareMap) {
+    public teamHoodServo (HardwareMap hardwareMap) {
 
         hoodServo = hardwareMap.get(Servo.class, "hoodServo");
         hoodServo.setDirection(Servo.Direction.REVERSE);
