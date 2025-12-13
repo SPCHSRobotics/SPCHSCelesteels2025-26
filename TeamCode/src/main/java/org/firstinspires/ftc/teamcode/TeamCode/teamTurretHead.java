@@ -10,7 +10,7 @@ public class teamTurretHead {
 
 
     public teamTurretHead (HardwareMap hardwareMap) {
-        spinningMotor = hardwareMap.get(DcMotor.class, "spinning motor");
+        spinningMotor = hardwareMap.get(DcMotor.class, "turretMotor");
         spinningMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         spinningMotor.setDirection(DcMotor.Direction.REVERSE);
     }
@@ -22,7 +22,7 @@ public class teamTurretHead {
 
         max = (Math.abs(spinningMotorPower));
         if (max > 1.0) {
-            spinningMotorPower /= max;
+            spinningMotorPower /= max * .5;
         }
         spinningMotor.setPower(spinningMotorPower);
         telemetry.addData("Spinning motor", "%4.2f, %4.2f",spinningMotorPower, spinningMotorPower);

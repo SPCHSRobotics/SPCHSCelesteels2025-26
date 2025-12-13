@@ -10,12 +10,15 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class teamIntake {
     public DcMotor intakeMotor;
     boolean intaking = false;
-    boolean lastButton = false;
-    boolean toggleState = false;
+    boolean intakeLastButton = false;
+    boolean intakeToggleState = false;
+    boolean outtaking = false;
+    boolean outtakeLastButton = false;
+    boolean outtakeToggleState = false;
 
     public teamIntake(HardwareMap hardwareMap) {
         //call intake motor
-        intakeMotor = hardwareMap.get(DcMotor.class,"IntakeMotor");
+        intakeMotor = hardwareMap.get(DcMotor.class,"intakeMotor");
 
         //set intake motor power
         intakeMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -23,28 +26,43 @@ public class teamIntake {
 
     public void teamIntakeFunction(Gamepad gamepad1, Telemetry telemetry){
 
-        double intakeOn = 1;
-
-        //holding down a turns on intake
+        //pressing a toggles intake on and off
         if (gamepad1.a) {
            intaking = true;
         } else {
             intaking = false;
         }
 
-        if (intaking && !lastButton) {
-            toggleState = !toggleState;
+        if (intaking && !intakeLastButton) {
+            intakeToggleState = !intakeToggleState;
         }
 
-        if (toggleState){
-            intakeMotor.setPower(.5);
+        if (intakeToggleState){
+            intakeMotor.setPower(1);
         } else {
             intakeMotor.setPower(0);
         }
-        lastButton = intaking;
+        intakeLastButton = intaking;
 
+        //pressing b toggles outtake on and off
+        if(gamepad1.b) {
+            outtaking = true;
+        } else {
+            outtaking = false;
         }
 
+        if(outtakeToggleState && !outtakeLastButton){
+            outtakeToggleState = !outtakeToggleState;
+        }
+
+        if (outtakeToggleState){
+            intakeMotor.setPower(-1);
+        } else {
+            intakeMotor.setPower(0);
+        }
+        outtakeLastButton = outtaking;
+
+        }
 
         //show what the intake power is on driver hub
         //telemetry.addData("intake power:",(intaking) ? "ON" : "OFF");
