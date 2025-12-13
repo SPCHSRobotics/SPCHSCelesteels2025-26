@@ -24,44 +24,19 @@ public class teamIntake {
         intakeMotor.setDirection(DcMotor.Direction.FORWARD);
     }
 
-    public void teamIntakeFunction(Gamepad gamepad1, Telemetry telemetry){
+    public void teamIntakeFunction(Gamepad gamepad1, Gamepad gamepad2, Telemetry telemetry) {
 
         //pressing a toggles intake on and off
-        if (gamepad1.a) {
-           intaking = true;
-        } else {
-            intaking = false;
-        }
 
-        if (intaking && !intakeLastButton) {
-            intakeToggleState = !intakeToggleState;
-        }
-
-        if (intakeToggleState){
+        if (gamepad1.a || gamepad2.b) {
             intakeMotor.setPower(1);
-        } else {
-            intakeMotor.setPower(0);
         }
-        intakeLastButton = intaking;
+            else if (gamepad1.b || gamepad2.x){
+                intakeMotor.setPower(-1);
 
-        //pressing b toggles outtake on and off
-        if(gamepad1.b) {
-            outtaking = true;
-        } else {
-            outtaking = false;
+            } else {
+                intakeMotor.setPower(0);
         }
-
-        if(outtakeToggleState && !outtakeLastButton){
-            outtakeToggleState = !outtakeToggleState;
-        }
-
-        if (outtakeToggleState){
-            intakeMotor.setPower(-1);
-        } else {
-            intakeMotor.setPower(0);
-        }
-        outtakeLastButton = outtaking;
-
         }
 
         //show what the intake power is on driver hub

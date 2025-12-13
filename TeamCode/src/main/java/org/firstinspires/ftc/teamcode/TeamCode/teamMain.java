@@ -31,7 +31,7 @@ public class teamMain extends LinearOpMode {
         while (opModeIsActive()) {
             //call all the functions
             teamDrive.teamDriveFunction(gamepad1,telemetry);
-            teamIntake.teamIntakeFunction(gamepad1,telemetry);
+            teamIntake.teamIntakeFunction(gamepad1, gamepad2,telemetry);
             teamShooter.teamShooterFunction(gamepad2,telemetry);
             teamTurretHead.teamTurretFunction(gamepad2,telemetry);
             //teamHoodServo.hoodServoFunction(gamepad2,telemetry);

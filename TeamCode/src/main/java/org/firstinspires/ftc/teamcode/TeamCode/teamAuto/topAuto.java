@@ -18,11 +18,11 @@ public class topAuto extends LinearOpMode {
     public DcMotor rightFrontDrive;
     public DcMotor outtakeMotorLeft;
     public DcMotor outtakeMotorRight;
-    public DcMotor lesserIntakeMotor;
-    public DcMotor greaterIntakeMotor;
+    public DcMotor intakeMotor;
 
 
-    static final double TURN_RIGHT_SPEED = 0.5;
+
+    static final double FORWARD_SPEED = 1;
 
     @Override
     public void runOpMode() {
@@ -36,12 +36,11 @@ public class topAuto extends LinearOpMode {
         outtakeMotorLeft = hardwareMap.get(DcMotor.class, "LeftOuttake");
         outtakeMotorRight = hardwareMap.get(DcMotor.class, "RightOuttake");
 
-        lesserIntakeMotor = hardwareMap.get(DcMotor.class, "lesserIntakeMotor");
-        greaterIntakeMotor = hardwareMap.get(DcMotor.class,"greaterIntakeMotor");
+        intakeMotor = hardwareMap.get(DcMotor.class,"intakeMotor");
 
 
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
-        leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
         rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
 
@@ -55,21 +54,24 @@ public class topAuto extends LinearOpMode {
 
         // Step through each leg of the path, ensuring that the OpMode has not been stopped along the way.
 
-        // Step 1:  Drive reverse for 1 second
-        leftFrontDrive.setPower(TURN_RIGHT_SPEED);
-        leftBackDrive.setPower(TURN_RIGHT_SPEED);
-        rightFrontDrive.setPower(-TURN_RIGHT_SPEED);
-        rightBackDrive.setPower(-TURN_RIGHT_SPEED);
+        // Step 1:  Drive forward for 3 seconds
+        leftFrontDrive.setPower(FORWARD_SPEED);
+        leftBackDrive.setPower(FORWARD_SPEED);
+        rightFrontDrive.setPower(FORWARD_SPEED);
+        rightBackDrive.setPower(FORWARD_SPEED);
+
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.1)) {
-            telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
+        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+            telemetry.addData("Path", "Forward: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
 
 
         // stop
-        lesserIntakeMotor.setPower(0);
-        greaterIntakeMotor.setPower(0);
+
+        intakeMotor.setPower(0);
+        outtakeMotorLeft.setPower(0);
+        outtakeMotorRight.setPower(0);
         leftFrontDrive.setPower(0);
         leftBackDrive.setPower(0);
         rightFrontDrive.setPower(0);
