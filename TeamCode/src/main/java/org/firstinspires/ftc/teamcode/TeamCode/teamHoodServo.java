@@ -21,14 +21,19 @@ public class teamHoodServo {
 
         double backfield = 1;
         double frontfield = 0;
-
-        if (gamepad2.dpad_down){
+        double servoPosition = 0;
+        
+        if (gamepad2.x){
             hoodServo.setPosition(backfield);
+            servoPosition = backfield;
 
-        } else if (gamepad2.dpad_up) {
+        } else if (gamepad2.y) {
             hoodServo.setPosition(frontfield);
+            servoPosition = frontfield;
 
         }
+        
+        telemetry.addData("servo position:",servoPosition);
 
     }
 }

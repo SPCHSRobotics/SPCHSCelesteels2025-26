@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeamCode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -17,14 +18,14 @@ public class teamShooter {
 
 
         //set intake motor reverse
-        shooterMotor.setDirection(DcMotor.Direction.FORWARD);
+        shooterMotor.setDirection(DcMotor.Direction.REVERSE);
 
         shooterMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void teamShooterFunction(Gamepad gamepad2, Telemetry telemetry) {
 
-        double shootingPower = 0.6;
+        double shootingPower = 1;
 
         //hold down a to rev up shooter
         if (gamepad2.aWasPressed()) {
