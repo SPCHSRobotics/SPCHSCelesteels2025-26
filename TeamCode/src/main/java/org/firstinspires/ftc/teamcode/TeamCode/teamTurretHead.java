@@ -18,7 +18,7 @@ public class teamTurretHead {
     public void teamTurretFunction(Gamepad gamepad2, Telemetry telemetry){
         double max;
 
-        double spinningMotorPower = gamepad2.left_stick_x;
+        double spinningMotorPower = gamepad2.right_stick_x;
 
         max = (Math.abs(spinningMotorPower));
         if (max > 1.0) {

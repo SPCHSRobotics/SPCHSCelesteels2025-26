@@ -41,5 +41,5 @@ public class teamIntake {
 
         //show what the intake power is on driver hub
         //telemetry.addData("intake power:",(intaking) ? "ON" : "OFF");
-
+             
     }
