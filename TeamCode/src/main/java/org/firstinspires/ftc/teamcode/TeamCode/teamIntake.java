@@ -24,14 +24,14 @@ public class teamIntake {
         intakeMotor.setDirection(DcMotor.Direction.FORWARD);
     }
 
-    public void teamIntakeFunction(Gamepad gamepad1, Gamepad gamepad2, Telemetry telemetry) {
+    public void teamIntakeFunction(Gamepad gamepad1, Telemetry telemetry) {
 
         //pressing a toggles intake on and off
 
-        if (gamepad1.a || gamepad2.b) {
+        if (gamepad1.a ) {
             intakeMotor.setPower(1);
         }
-            else if (gamepad1.b || gamepad2.x){
+            else if (gamepad1.b){
                 intakeMotor.setPower(-1);
 
             } else {
