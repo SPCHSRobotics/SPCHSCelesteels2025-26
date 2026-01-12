@@ -17,9 +17,6 @@ public class teamMain extends LinearOpMode {
         teamIntake teamIntake = new teamIntake(hardwareMap);
         teamShooter teamShooter = new teamShooter(hardwareMap);
 
-        //teamHoodServo teamHoodServo = new teamHoodServo(hardwareMap);
-
-
         //Wait for the team to start (driver presses START)
         telemetry.addData("Status","Initialized");
         telemetry.update();
@@ -32,7 +29,7 @@ public class teamMain extends LinearOpMode {
             //call all the functions
             teamDrive.teamDriveFunction(gamepad1,telemetry);
             teamIntake.teamIntakeFunction(gamepad1,telemetry);
-            teamShooter.teamShooterFunction(gamepad2,telemetry);
+            teamShooter.teamShooterFunction(gamepad1,telemetry);
 
             //teamHoodServo.hoodServoFunction(gamepad2,telemetry);
 

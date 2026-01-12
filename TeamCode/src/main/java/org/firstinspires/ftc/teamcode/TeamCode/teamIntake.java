@@ -9,12 +9,6 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class teamIntake {
     public DcMotor intakeMotor;
-    boolean intaking = false;
-    boolean intakeLastButton = false;
-    boolean intakeToggleState = false;
-    boolean outtaking = false;
-    boolean outtakeLastButton = false;
-    boolean outtakeToggleState = false;
 
     public teamIntake(HardwareMap hardwareMap) {
         //call intake motor
@@ -26,20 +20,18 @@ public class teamIntake {
 
     public void teamIntakeFunction(Gamepad gamepad1, Telemetry telemetry) {
 
-        //pressing a toggles intake on and off
-
-        if (gamepad1.a ) {
+        //holding right bumper turns on intake
+        if (gamepad1.rightBumperWasPressed()) {
             intakeMotor.setPower(1);
+        } else if (gamepad1.rightBumperWasReleased()) {
+            intakeMotor.setPower(0);
         }
-            else if (gamepad1.b){
-                intakeMotor.setPower(-1);
-
-            } else {
-                intakeMotor.setPower(0);
+        //holding x outtakes
+        if (gamepad1.xWasPressed()){
+            intakeMotor.setPower(-1);
+        } else if (gamepad1.xWasReleased()){
+            intakeMotor.setPower(0);
         }
-        }
-
-        //show what the intake power is on driver hub
-        //telemetry.addData("intake power:",(intaking) ? "ON" : "OFF");
-             
+        telemetry.addData("intaking power:", intakeMotor);
+    }
     }

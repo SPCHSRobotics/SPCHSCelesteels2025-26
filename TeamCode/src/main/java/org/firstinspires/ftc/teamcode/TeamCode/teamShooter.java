@@ -19,20 +19,20 @@ public class teamShooter {
 
         //set intake motor reverse
         shooterMotor.setDirection(DcMotor.Direction.REVERSE);
-
+        shooterMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         shooterMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public void teamShooterFunction(Gamepad gamepad2, Telemetry telemetry) {
+    public void teamShooterFunction(Gamepad gamepad1, Telemetry telemetry) {
 
         double shootingPower = 1;
 
-        //hold down a to rev up shooter
-        if (gamepad2.aWasPressed()) {
+        //hold down left bumper to rev up shooter
+        if (gamepad1.leftBumperWasPressed()) {
             shooterMotor.setPower(shootingPower);
-        } else if (gamepad2.aWasReleased()) {
+        } else if (gamepad1.leftBumperWasReleased()) {
             shooterMotor.setPower(0);
         }
-
+        telemetry.addData("shooting power:", shootingPower);
     }
 }
