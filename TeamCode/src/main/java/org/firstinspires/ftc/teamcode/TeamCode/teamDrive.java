@@ -22,9 +22,9 @@ public class teamDrive {
         backRightDrive = hardwareMap.get(DcMotor.class, "backRightDrive");
         backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftDrive");
 
-        frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
         backRightDrive.setDirection(DcMotor.Direction.REVERSE);
 
         frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -33,13 +33,13 @@ public class teamDrive {
         frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public void teamDriveFunction(Gamepad gamepad1, Telemetry telemetry){
+    public void teamDriveFunction(Gamepad gamepad1, Telemetry telemetry){   
         double max;
 
         // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
-        double axial   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
-        double lateral =  gamepad1.left_stick_x;
-        double yaw     =  -gamepad1.right_stick_x;
+        double axial   = -gamepad1.left_stick_y;   // forward / backward
+        double lateral =  gamepad1.left_stick_x;   // strafe
+        double yaw     =  gamepad1.right_stick_x;  // turn
 
         // Combine the joystick requests for each axis-motion to determine each wheel's power.
         // Set up a variable for each drive wheel to save the power level for telemetry.

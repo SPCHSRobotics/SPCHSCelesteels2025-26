@@ -18,14 +18,14 @@ public class teamShooter {
 
 
         //set intake motor reverse
-        shooterMotor.setDirection(DcMotor.Direction.REVERSE);
+        shooterMotor.setDirection(DcMotor.Direction.FORWARD);
         shooterMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         shooterMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void teamShooterFunction(Gamepad gamepad1, Telemetry telemetry) {
 
-        double shootingPower = 1;
+        double shootingPower = .6;
 
         //hold down left bumper to rev up shooter
         if (gamepad1.leftBumperWasPressed()) {
