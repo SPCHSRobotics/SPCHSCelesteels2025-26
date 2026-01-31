@@ -24,8 +24,8 @@ public class teamDrive {
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
-        backRightDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotor.Direction.FORWARD);
 
         frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -37,9 +37,9 @@ public class teamDrive {
         double max;
 
         // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
-        double axial   = -gamepad1.left_stick_y;   // forward / backward
+        double axial   = gamepad1.right_stick_x;   // forward / backward
         double lateral =  gamepad1.left_stick_x;   // strafe
-        double yaw     =  gamepad1.right_stick_x;  // turn
+        double yaw     =  gamepad1.left_stick_y;  // turn
 
         // Combine the joystick requests for each axis-motion to determine each wheel's power.
         // Set up a variable for each drive wheel to save the power level for telemetry.
@@ -48,7 +48,7 @@ public class teamDrive {
         double backLeftPower   = axial - lateral + yaw;
         double backRightPower  = axial + lateral - yaw;
 
-        // Normalize the values so no wheel power exceeds 100%
+        // Normalize the values so no wheel power exce   eds 100%
         // This ensures that the robot maintains the desired motion.
         max = Math.max(Math.abs(frontLeftPower), Math.abs(frontRightPower));
         max = Math.max(max, Math.abs(backLeftPower));
